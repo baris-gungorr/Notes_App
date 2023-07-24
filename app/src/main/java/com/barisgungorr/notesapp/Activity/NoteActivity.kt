@@ -1,45 +1,46 @@
 package com.barisgungorr.notesapp.Activity
 
 import android.content.Context
-import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
+import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.ActivityMainBinding
+import com.barisgungorr.notesapp.databinding.ActivityNoteBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-
-    private lateinit var mainLayout: NestedScrollView
-    private lateinit var noInternet: LottieAnimationView
+class NoteActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNoteBinding
+    private lateinit var parentLayout: ConstraintLayout
+    private lateinit var mainLayout: FrameLayout
+   private  lateinit var noInternet: LottieAnimationView
     private lateinit var connectivityObserver: ConnectivityObserver
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityNoteBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        mainLayout = binding.mainLayout
-        noInternet = binding.noInternet
+        parentLayout=findViewById(R.id.parent_layout)
+
+        mainLayout=findViewById(R.id.main_layout)
+
+        noInternet=findViewById(R.id.no_internet)
+
+
         connectivityObserver = NetworkConnectivityObserver(applicationContext)
 
         if (isNetworkAvailable(this)){
@@ -67,35 +68,42 @@ class MainActivity : AppCompatActivity() {
                 mainLayout.visibility= View.VISIBLE
 
                 noInternet.visibility= View.GONE
+
             }
 
             else{
+
 
                 mainLayout.visibility= View.GONE
 
                 noInternet.visibility= View.VISIBLE
 
+
             }
+
 
         }.launchIn(lifecycleScope)
 
 
+
+
+
         checkUser()
+
+
 
     }
 
+
     private fun checkUser(){
 
-        val firebaseUser=FirebaseAuth.getInstance().currentUser
+        val firebaseUser= FirebaseAuth.getInstance().currentUser
 
 
         if (firebaseUser!=null && firebaseUser.isEmailVerified){
 
-            startActivity(Intent(this, NoteActivity::class.java))
 
-            overridePendingTransition(0,0)
 
-            finish()
         }
 
         else{
@@ -106,6 +114,8 @@ class MainActivity : AppCompatActivity() {
                     .requestEmail()
                     .build()
 
+
+
                 val googleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions)
 
                 Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
@@ -113,10 +123,17 @@ class MainActivity : AppCompatActivity() {
             }
             catch (e:Exception){
 
+
             }
+
+
+
             FirebaseAuth.getInstance().signOut()
+
         }
+
     }
+
     fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -143,7 +160,8 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-    @Deprecated("Deprecated in Java")
+
+
     override fun onBackPressed() {
 
         if (noInternet.isVisible){
@@ -151,9 +169,13 @@ class MainActivity : AppCompatActivity() {
             finishAffinity()
 
         }
+
+
         super.onBackPressed()
     }
 
+
 }
 
-
+    }
+}
