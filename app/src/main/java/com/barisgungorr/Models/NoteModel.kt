@@ -13,6 +13,6 @@ data class NoteModel(
         "",
           "",
              0,
-               0
+               -1
     )
 }
