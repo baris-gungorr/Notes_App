@@ -63,7 +63,7 @@ class Forget_Fragment : Fragment() {
 
                         Navigation.findNavController(view).navigate(R.id.action_forgetPasswordFragment_to_signInFragment)
 
-                        binding.progressbar.visibility=View.INVISIBLE
+                        binding.progressBar.visibility=View.INVISIBLE
 
                     }
 
