@@ -5,56 +5,124 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import com.barisgungorr.Models.InformationModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.notesapp.databinding.FragmentSignUpBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Sign_Up_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Sign_Up_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private lateinit var binding: FragmentSignUpBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseDatabase:FirebaseDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_sign__up_, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Sign_Up_Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Sign_Up_Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentSignUpBinding.bind(view)
+        firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
+
+        binding.gotologin.setOnClickListener {
+            Navigation // Kodla
+        }
+
+        binding.signup.setOnClickListener {
+
+            val mail = binding.signUpEmaail.text.toString().trim()
+            val password = binding.signUpPassword.text.toString().trim()
+            val repassword = binding.signUpRePassword.text.toString().trim()
+
+            if (mail.isEmpty() || password.isEmpty() || repassword.isEmpty()) {
+                Toast.makeText(requireContext(),"Tüm alanları doldurun",Toast.LENGTH_SHORT).show()
+            }else if (password.length < 6) {
+                Toast.makeText(requireContext(),"Parolanız en az 6 haneli olmalıdır",Toast.LENGTH_SHORT).show()
+
+            }else if (password != repassword) {
+                Toast.makeText(requireContext(),"Parolalar uyuşmuyor",Toast.LENGTH_SHORT).show()
+
+            }else {
+                binding.progressBar.visibility = View.VISIBLE
+
+                firebaseAuth.createUserWithEmailAndPassword(mail,password).addOnCompleteListener {task ->
+                    if (task.isSuccessful) {
+
+                        val firebaseUser : FirebaseUser? = firebaseAuth.currentUser
+                        val user = InformationModel(binding.signUpName.text.toString(),
+                        binding.signUpEmaail.text.toString(),
+                        binding.signUpPassword.text.toString(),
+                        "https://res.cloudinary.com/dmioqpqrb/image/upload/v1690542261/profile_bfndcy.jpg",
+                        firebaseUser?.uid.toString()
+                        )
+
+                        if (firebaseUser != null) {
+
+                            firebaseDatabase.reference.child("Users").child(firebaseUser.uid)
+                                .setValue(user)
+                        }
+                        Toast.makeText(requireContext(),
+                        "Başarılı Kayıt",
+                            Toast.LENGTH_SHORT).show()
+
+                        sendEmailVerification()
+
+
+                    } else {
+
+                        Toast.makeText(requireContext(),
+                        "Kayıt 'Başarısız'",
+                            Toast.LENGTH_SHORT).show()
+                        binding.progressBar.visibility = View.INVISIBLE
+
+                    }
                 }
             }
+
+        }
+
     }
+
+    private fun sendEmailVerification () {
+        val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
+
+        if (firebaseAuth != null) {
+
+            binding.progressBar.visibility = View.INVISIBLE
+
+            firebaseUser?.sendEmailVerification()?.addOnSuccessListener {
+
+                Toast.makeText(
+                    requireContext(), "Doğrulama postanız 'Gönderildi'  \n Doğrulayın ve giriş yapın", Toast.LENGTH_SHORT).show()
+
+                Navigation.findNavController(requireView()).navigate(R.id.action_signUpFragment_to_signInFragment)  // Kodlayın
+
+            }
+
+
+        } else {
+
+            Toast.makeText(requireContext(), "Doğrulama postanız 'Gönderilemedi'", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+    }
+
 }
