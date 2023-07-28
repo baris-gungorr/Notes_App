@@ -113,16 +113,14 @@ class Splash_Fragment : Fragment() {
 
             if (checkBox.isChecked) {
 
-
                 Navigation.findNavController(view)
-                    .navigate(R.id.action_splashFragment_to_signInFragment)
+                    .navigate(R.id.action_splash_Fragment_to_sign_in_Fragment)
 
             }
 
             else{
                 Toast.makeText(requireContext(), "Şartlar & Koşullar kabul edilmelidir!", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 

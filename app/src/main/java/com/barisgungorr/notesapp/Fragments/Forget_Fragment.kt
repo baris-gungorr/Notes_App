@@ -36,7 +36,7 @@ class Forget_Fragment : Fragment() {
 
         binding.gobacktologin.setOnClickListener {
 
-        Navigation.findNavController(view).navigate()  // kodlanacak
+        Navigation.findNavController(view).navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)  // kodlanacak
 
         }
 
@@ -61,7 +61,7 @@ class Forget_Fragment : Fragment() {
                             Toast.LENGTH_LONG
                             ).show()
 
-                        Navigation.findNavController(view).navigate(R.id.action_forgetPasswordFragment_to_signInFragment)
+                        Navigation.findNavController(view).navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
 
                         binding.progressBar.visibility=View.INVISIBLE
 

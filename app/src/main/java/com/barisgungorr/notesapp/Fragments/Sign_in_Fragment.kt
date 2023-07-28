@@ -37,12 +37,12 @@ class Sign_in_Fragment : Fragment() {
 
         binding.goToSignUp.setOnClickListener {
 
-            Navigation.findNavController(view).navigate(R.id.) // kodla
+            Navigation.findNavController(view).navigate(R.id.action_sign_in_Fragment_to_sign_Up_Fragment) // kodla
         }
 
         binding.goToForgotPassword.setOnClickListener {
 
-            Navigation.findNavController()  // kodla
+            Navigation.findNavController(view).navigate(R.id.action_sign_in_Fragment_to_forget_Fragment)  // kodla
         }
 
         binding.login.setOnClickListener {

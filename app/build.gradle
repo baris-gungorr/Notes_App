@@ -74,6 +74,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.firebase:firebase-database:20.2.2'
+    implementation 'com.firebaseui:firebase-ui-firestore:latest_version'
+    implementation 'com.firebaseui:firebase-ui-auth:latest_version'
+
 
 
     implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'

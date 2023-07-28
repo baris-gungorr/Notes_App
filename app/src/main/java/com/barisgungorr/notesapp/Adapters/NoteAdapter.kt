@@ -11,6 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.Models.NoteModel
 import com.barisgungorr.notesapp.R
+import com.bumptech.glide.util.Util.getSnapshot
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonVisitor
@@ -21,7 +22,10 @@ import java.text.SimpleDateFormat
 
 class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context : Context): FirestoreRecyclerAdapter<NoteModel,NoteAdapter.NoteViewHolder>(options) {
 
+
+
     class NoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+
         val contextCard: CardView = itemView.findViewById(R.id.content_card)
         val titleCard: CardView = itemView.findViewById(R.id.title_card)
         val noteContent: TextView = itemView.findViewById(R.id.note_content)
@@ -29,7 +33,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
         val noteDate: TextView = itemView.findViewById(R.id.note_date)
 
 
-        val markwon = Markwon.builder(itemView.context)
+        val markWon = Markwon.builder(itemView.context)
             .usePlugin(StrikethroughPlugin.create())
             .usePlugin(TaskListPlugin.create(itemView.context))
             .usePlugin(object : AbstractMarkwonPlugin() {
@@ -82,7 +86,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
                 val bundle = Bundle()
                 bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_noteFragment_to_saveEditFragment, bundle)
+                    .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
             }
 
@@ -91,7 +95,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
                 val bundle = Bundle()
                 bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_noteFragment_to_saveEditFragment, bundle)
+                    .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
             }
 
@@ -100,7 +104,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
                 val bundle = Bundle()
                 bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_noteFragment_to_saveEditFragment, bundle)
+                    .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
             }
 
@@ -109,7 +113,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
                 val bundle = Bundle()
                 bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_noteFragment_to_saveEditFragment, bundle)
+                    .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
             }
 
@@ -119,7 +123,5 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
     }
 
 }
-
-
 
 }

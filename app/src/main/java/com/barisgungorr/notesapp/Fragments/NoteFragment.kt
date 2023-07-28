@@ -41,6 +41,10 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialElevationScale
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.squareup.picasso.Picasso
@@ -68,6 +72,7 @@ class NoteFragment : Fragment() {
     lateinit var noData: ImageView
 
     lateinit var options: FirestoreRecyclerOptions<NoteModel>
+
 
     lateinit var firebaseAdapter: NoteAdapter
 
@@ -106,7 +111,7 @@ class NoteFragment : Fragment() {
                     activity?.finish()
                     return
                 } else {
-                    val backToast = Toast.makeText(context, "Çıkış yapmak için çift tıklayın", Toast.LENGTH_LONG)
+                    val backToast = Toast.makeText(context, "Çıkış yapmak için iki kez tıklayın", Toast.LENGTH_LONG)
                     backToast.show()
                 }
                 backPressedTime = System.currentTimeMillis()
@@ -115,9 +120,9 @@ class NoteFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
-        val view:View=inflater.inflate(com.google.firebase.firestore.R.layout.fragment_note, container, false)
+        val view:View=inflater.inflate(R.layout.fragment_note, container, false)
 
-        rvNote=view.findViewById(com.google.firebase.firestore.R.id.rv_note)
+        rvNote=view.findViewById(R.id.rv_note)
 
         setUpFirebaseAdapter()
 
@@ -144,13 +149,13 @@ class NoteFragment : Fragment() {
             activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
 
-        addNoteFab=view.findViewById(com.google.firebase.firestore.R.id.add_note_fab)
-        rvNote=view.findViewById(com.google.firebase.firestore.R.id.rv_note)
-        noData=view.findViewById(com.google.firebase.firestore.R.id.no_data)
-        chatFabText=view.findViewById(com.google.firebase.firestore.R.id.chatFabText)
-        noteUser=view.findViewById(com.google.firebase.firestore.R.id.note_user)
-        search=view.findViewById(com.google.firebase.firestore.R.id.search)
-        noteGrid=view.findViewById(com.google.firebase.firestore.R.id.note_grid)
+        addNoteFab=view.findViewById(R.id.add_note_fab)
+        rvNote=view.findViewById(R.id.rv_note)
+        noData=view.findViewById(R.id.no_data)
+        chatFabText=view.findViewById(R.id.chatFabText)
+        noteUser=view.findViewById(R.id.note_user)
+        search=view.findViewById(R.id.search)
+        noteGrid=view.findViewById(R.id.note_grid)
 
 
 
@@ -226,30 +231,30 @@ class NoteFragment : Fragment() {
 
         noteUser.setOnClickListener {
 
-            val dialog = Dialog(requireContext(), com.google.firebase.firestore.R.style.BottomSheetDialogTheme)
+            val dialog = Dialog(requireContext(), R.style.BottomSheetDialogTheme)
 
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-            dialog.setContentView(com.google.firebase.firestore.R.layout.account_dialog)
+            dialog.setContentView(R.layout.accont_dialog)
 
             dialog.show()
 
-            val userProfile: ImageView?=dialog.findViewById(com.google.firebase.firestore.R.id.user_profile)
-            val userName:TextView?=dialog.findViewById(com.google.firebase.firestore.R.id.user_name)
-            val userMail:TextView?=dialog.findViewById(com.google.firebase.firestore.R.id.user_mail)
-            val userLogout: Button?=dialog.findViewById(com.google.firebase.firestore.R.id.user_logout)
+            val userProfile: ImageView?=dialog.findViewById(R.id.user_profile)
+            val userName:TextView?=dialog.findViewById(R.id.user_name)
+            val userMail:TextView?=dialog.findViewById(R.id.user_mail)
+            val userLogout: Button?=dialog.findViewById(R.id.user_logout)
 
 
             FirebaseDatabase.getInstance().reference.child("Users").child(FirebaseAuth.getInstance().uid.toString())
-                .addValueEventListener(object :ValueEventListener{
+                .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
 
                         val data= snapshot.getValue(InformationModel::class.java)
 
-                        Picasso.get().load(data?.userProfilePhoto).placeholder(com.google.firebase.firestore.R.drawable.dp_holder).error(
-                            com.google.firebase.firestore.R.drawable.dp_holder).into(userProfile!!)
+                        Picasso.get().load(data?.userProfilePhoto).placeholder(R.drawable.dp_holder).error(
+                            R.drawable.dp_holder).into(userProfile!!)
 
-                        userName?.text=data?.userName
+                        userName?.text=data?.username
 
                         userMail?.text=data?.userEmail
 
@@ -266,7 +271,7 @@ class NoteFragment : Fragment() {
 
                 try {
                     val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
+                        .requestIdToken("166513008091-8r3be9dd0dvbpr5hkoaa5d0afmtm82fs.apps.googleusercontent.com")
                         .requestEmail()
                         .build()
 
@@ -322,9 +327,6 @@ class NoteFragment : Fragment() {
                     setUpFirebaseAdapter()
 
                 }
-                else{
-
-                }
 
             }
         })
@@ -356,7 +358,7 @@ class NoteFragment : Fragment() {
 
         addNoteFab.setOnClickListener {
 
-            navController.navigate(com.google.firebase.firestore.R.id.action_noteFragment_to_saveEditFragment)
+            navController.navigate(R.id.action_noteFragment_to_saveFragment)
 
         }
 
@@ -405,7 +407,7 @@ class NoteFragment : Fragment() {
                             }
 
                             val snackBar = Snackbar.make(
-                                requireView(), "Note Deleted", Snackbar.LENGTH_LONG
+                                requireView(), "Not silindi", Snackbar.LENGTH_LONG
                             ).addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
                                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                                     super.onDismissed(transientBottomBar, event)
@@ -425,7 +427,7 @@ class NoteFragment : Fragment() {
                                 }
                             }).apply {
                                 animationMode = Snackbar.ANIMATION_MODE_FADE
-                                setAnchorView(com.google.firebase.firestore.R.id.add_note_fab)
+                                setAnchorView(R.id.add_note_fab)
                             }
                             snackBar.setActionTextColor(
                                 ContextCompat.getColor(
@@ -467,7 +469,7 @@ class NoteFragment : Fragment() {
                                 }
                             }).apply {
                                 animationMode = Snackbar.ANIMATION_MODE_FADE
-                                setAnchorView(com.google.firebase.firestore.R.id.add_note_fab)
+                                setAnchorView(R.id.add_note_fab)
                             }
                             snackBar.setActionTextColor(
                                 ContextCompat.getColor(
