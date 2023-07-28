@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+    </data>
+
+
+<FrameLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Sign_Up_Fragment">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <ProgressBar
+           android:id="@+id/progress_Bar"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_above="@+id/gotologin"
+           android:layout_below="@+id/signup"
+           android:layout_centerHorizontal="true"
+           android:layout_marginTop="15dp"
+           android:layout_marginBottom="15dp"
+           android:visibility="invisible"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/signup"
+           app:layout_constraintBottom_toTopOf="@+id/gotologin"
+           android:indeterminateTint="?attr/colorOnSecondary">
+
+
+       </ProgressBar>
+
+       <LinearLayout
+           android:id="@+id/linearLayout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           app:layout_constraintTop_toTopOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           android:padding="5dp">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="KULLANICI KAYIT"
+               android:textColor="?attr/colorOnSecondary"
+               android:textSize="30dp"
+               android:textStyle="bold"
+               android:textAlignment="center">
+
+           </TextView>
+
+
+       </LinearLayout>
+
+       <ImageView
+           android:id="@+id/deverse_logo"
+           android:layout_width="150dp"
+           android:layout_height="150dp"
+           android:src="@drawable/notes"
+           app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+           tools:ignore="ContentDescription"
+           android:scaleType="centerCrop">
+
+       </ImageView>
+
+       <LinearLayout
+           android:id="@+id/linearLayout2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           app:layout_constraintBottom_toTopOf="@+id/signup"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/deverse_logo">
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/name"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_above="@+id/profession"
+               android:layout_marginLeft="30dp"
+               android:layout_marginRight="30dp"
+               android:layout_marginBottom="10dp">
+
+               <EditText
+                   android:id="@+id/signUpName"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Adınız:"
+                   android:inputType="textPersonName">
+
+               </EditText>
+
+
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/email"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_above="@+id/centerline2"
+               android:layout_marginLeft="30dp"
+               android:layout_marginRight="30dp"
+               android:layout_marginBottom="5dp">
+
+               <EditText
+                   android:id="@+id/signUpEmaail"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="E-mail:"
+                   android:inputType="textEmailAddress">
+
+               </EditText>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/password"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/email"
+               android:layout_marginLeft="30dp"
+               android:layout_marginTop="5dp"
+               android:layout_marginRight="30dp"
+               app:passwordToggleEnabled="true">
+
+               <EditText
+                   android:id="@+id/signUpPassword"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Parola:"
+                   android:inputType="textPassword">
+
+               </EditText>
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/rePassword"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/password"
+               android:layout_marginLeft="30dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginRight="30dp"
+               app:passwordToggleEnabled="true">
+
+               <EditText
+                   android:id="@+id/signUpRePassword"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Parola Tekrar:">
+
+               </EditText>
+
+
+
+           </com.google.android.material.textfield.TextInputLayout>
+
+
+       </LinearLayout>
+
+       <android.widget.Button
+           android:id="@+id/signup"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_marginLeft="30dp"
+           android:layout_marginTop="30dp"
+           android:layout_marginRight="30dp"
+           android:background="@drawable/sign_in_bg"
+           android:text="KAYIT OL"
+           android:textColor="@color/white"
+           android:textSize="16sp"
+           android:textStyle="bold"
+           app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintBottom_toTopOf="@id/progress_Bar">
+
+
+
+       </android.widget.Button>
+
+       <android.widget.Button
+           android:id="@+id/gotologin"
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginLeft="30dp"
+           android:layout_marginRight="30dp"
+           android:layout_marginBottom="30dp"
+           android:background="@drawable/google_button_bg"
+           android:text="ZATEN KAYITLI MISIN ?"
+           android:textColor="@color/white"
+           android:textSize="16sp"
+           android:textStyle="bold"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/progress_Bar">
+
+
+       </android.widget.Button>
+
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</FrameLayout>
+
+    </layout>
