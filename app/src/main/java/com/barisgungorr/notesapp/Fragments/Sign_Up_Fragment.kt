@@ -94,9 +94,7 @@ class Sign_Up_Fragment : Fragment() {
                     }
                 }
             }
-
         }
-
     }
 
     private fun sendEmailVerification () {
@@ -115,14 +113,10 @@ class Sign_Up_Fragment : Fragment() {
 
             }
 
-
         } else {
 
             Toast.makeText(requireContext(), "Doğrulama postanız 'Gönderilemedi'", Toast.LENGTH_SHORT).show()
         }
 
-
-
     }
-
 }

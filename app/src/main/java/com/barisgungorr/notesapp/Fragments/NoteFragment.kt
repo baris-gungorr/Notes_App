@@ -33,6 +33,7 @@ import com.barisgungorr.Utils.hideKeyboard
 import com.barisgungorr.notesapp.Activity.MainActivity
 import com.barisgungorr.notesapp.Adapters.NoteAdapter
 import com.barisgungorr.notesapp.R
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -280,7 +281,7 @@ class NoteFragment : Fragment() {
                     Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
 
                 }
-                catch (e:Exception){
+                catch (_:Exception){
 
                 }
 
@@ -289,7 +290,6 @@ class NoteFragment : Fragment() {
                 requireActivity().finish()
 
             }
-
         }
 
         search.addTextChangedListener(object : TextWatcher {
@@ -327,7 +327,6 @@ class NoteFragment : Fragment() {
                     setUpFirebaseAdapter()
 
                 }
-
             }
         })
 
@@ -415,7 +414,7 @@ class NoteFragment : Fragment() {
 
                                 override fun onShown(transientBottomBar: Snackbar?) {
 
-                                    transientBottomBar?.setAction("Emin misin ?") {
+                                    transientBottomBar?.setAction("Emin misiniz ?") {
 
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)
@@ -457,7 +456,7 @@ class NoteFragment : Fragment() {
 
                                 override fun onShown(transientBottomBar: Snackbar?) {
 
-                                    transientBottomBar?.setAction("Emin misin ?") {
+                                    transientBottomBar?.setAction("Emin misiniz ?") {
 
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)
@@ -516,21 +515,16 @@ class NoteFragment : Fragment() {
             startPostponedEnterTransition()
             true
         }
-
     }
 
     override fun onStart() {
         super.onStart()
-
-
 
         rvNote.recycledViewPool.clear()
         firebaseAdapter.notifyDataSetChanged()
         firebaseAdapter.startListening()
 
     }
-
-
 
     override fun onStop() {
         super.onStop()
@@ -554,6 +548,5 @@ class NoteFragment : Fragment() {
         mContext = null
 
     }
-
 }
 

@@ -5,27 +5,25 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
-import com.barisgungorr.notesapp.databinding.ActivityMainBinding
+import com.barisgungorr.Connections.ConnectivityObserver
+import com.barisgungorr.Connections.NetworkConnectivityObserver
+import com.barisgungorr.notesapp.R
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
 
     private lateinit var mainLayout: NestedScrollView
     private lateinit var noInternet: LottieAnimationView
@@ -34,12 +32,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(R.layout.activity_main)
 
-        mainLayout = binding.mainLayout
-        noInternet = binding.noInternet
+
+
+        mainLayout=findViewById(R.id.main_layout)
+
+        noInternet=findViewById(R.id.no_internet)
         connectivityObserver = NetworkConnectivityObserver(applicationContext)
 
         if (isNetworkAvailable(this)){
@@ -111,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
 
             }
-            catch (e:Exception){
+            catch (_:Exception){
 
             }
             FirebaseAuth.getInstance().signOut()
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {

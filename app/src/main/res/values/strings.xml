@@ -4,4 +4,10 @@
 
     <string name="sample_text"> </string>
     <string name="edited_on">Edited on: %1$s</string>
+    <string name="e_mail">E-Mail:</string>
+    <string name="parola">Parola:</string>
+    <string name="g_r_yap">GİRİŞ YAP</string>
+    <string name="ifremi_unuttum">Şifremi Unuttum</string>
+    <string name="kayit_ol">KAYIT OL</string>
+    <string name="veya">Veya</string>
 </resources>

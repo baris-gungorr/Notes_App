@@ -16,11 +16,6 @@ class Forget_Fragment : Fragment() {
 
     private lateinit var binding: FragmentForgetBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +31,7 @@ class Forget_Fragment : Fragment() {
 
         binding.gobacktologin.setOnClickListener {
 
-        Navigation.findNavController(view).navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)  // kodlanacak
+        Navigation.findNavController(view).navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
 
         }
 

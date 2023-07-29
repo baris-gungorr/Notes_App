@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.Models.NoteModel
 import com.barisgungorr.notesapp.R
 import com.bumptech.glide.util.Util.getSnapshot
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonVisitor
@@ -20,7 +22,8 @@ import io.noties.markwon.ext.tasklist.TaskListPlugin
 import org.commonmark.node.SoftLineBreak
 import java.text.SimpleDateFormat
 
-class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context : Context): FirestoreRecyclerAdapter<NoteModel,NoteAdapter.NoteViewHolder>(options) {
+class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>, var context : Context): FirestoreRecyclerAdapter<NoteModel, NoteAdapter.NoteViewHolder>(options) {
+
 
 
 
@@ -124,4 +127,3 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>,var context :
 
 }
 
-}

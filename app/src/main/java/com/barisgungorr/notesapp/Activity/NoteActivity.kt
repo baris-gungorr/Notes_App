@@ -4,25 +4,27 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
+import com.barisgungorr.Connections.ConnectivityObserver
+import com.barisgungorr.Connections.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
-import com.barisgungorr.notesapp.databinding.ActivityMainBinding
-import com.barisgungorr.notesapp.databinding.ActivityNoteBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class NoteActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityNoteBinding
+
     private lateinit var parentLayout: ConstraintLayout
     private lateinit var mainLayout: FrameLayout
    private  lateinit var noInternet: LottieAnimationView
@@ -30,9 +32,8 @@ class NoteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNoteBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(R.layout.activity_note)
+
 
         parentLayout=findViewById(R.id.parent_layout)
 
@@ -167,15 +168,9 @@ class NoteActivity : AppCompatActivity() {
         if (noInternet.isVisible){
 
             finishAffinity()
-
         }
-
 
         super.onBackPressed()
     }
-
-
 }
 
-    }
-}

@@ -52,8 +52,6 @@ class Sign_in_Fragment : Fragment() {
                 Toast.makeText(requireContext(), "Alanları doldurunuz!", Toast.LENGTH_LONG).show()
 
 
-
-
             binding.progressBar.visibility = View.VISIBLE
 
             firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->

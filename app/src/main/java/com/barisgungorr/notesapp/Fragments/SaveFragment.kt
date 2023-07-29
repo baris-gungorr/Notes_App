@@ -83,7 +83,7 @@ class SaveFragment : Fragment() {
                 if (etNoteContent.text.toString().isEmpty() &&
                     etTitle.text.toString().isEmpty() && noteId==null){
 
-                    Navigation.findNavController(view!!).navigate(R.id.action_saveEditFragment_to_noteFragment)
+                    Navigation.findNavController(view!!).navigate(R.id.action_saveFragment_to_noteFragment)
 
                 }
                 else {
@@ -230,7 +230,7 @@ class SaveFragment : Fragment() {
 
                         Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
 
-                        navController.navigate(R.id.action_saveEditFragment_to_noteFragment)
+                        navController.navigate(R.id.action_saveFragment_to_noteFragment)
 
                     }
                 }
@@ -261,7 +261,7 @@ class SaveFragment : Fragment() {
 
                         Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
 
-                        navController.navigate(R.id.action_saveEditFragment_to_noteFragment)
+                        navController.navigate(R.id.action_saveFragment_to_noteFragment)
 
                     }
                 }
@@ -287,7 +287,7 @@ class SaveFragment : Fragment() {
 
                 navController=Navigation.findNavController(requireView())
 
-                navController.navigate(R.id.action_saveEditFragment_to_noteFragment)
+                navController.navigate(R.id.action_saveFragment_to_noteFragment)
 
             }
     }

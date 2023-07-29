@@ -104,9 +104,7 @@ class Splash_Fragment : Fragment() {
                     "Şartlar & Koşullar kabul edilmelidir!",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }
-
         }
 
         signIn.setOnClickListener {
@@ -115,9 +113,7 @@ class Splash_Fragment : Fragment() {
 
                 Navigation.findNavController(view)
                     .navigate(R.id.action_splash_Fragment_to_sign_in_Fragment)
-
             }
-
             else{
                 Toast.makeText(requireContext(), "Şartlar & Koşullar kabul edilmelidir!", Toast.LENGTH_SHORT).show()
             }
@@ -138,9 +134,7 @@ class Splash_Fragment : Fragment() {
                 catch (e:Exception){
 
                     Toast.makeText(requireContext(),"Başarısız kayıt", Toast.LENGTH_SHORT).show()
-
                 }
-
             }
         }
     }
@@ -151,7 +145,6 @@ class Splash_Fragment : Fragment() {
 
         firebaseAuth.signInWithCredential(credential)
             .addOnSuccessListener {
-
 
                 val firebaseUser = firebaseAuth.currentUser
 
@@ -180,7 +173,6 @@ class Splash_Fragment : Fragment() {
                     else{
 
                         Toast.makeText(requireContext(), "Kullanıcı bulunamadı!", Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
@@ -231,7 +223,7 @@ class Splash_Fragment : Fragment() {
 
             }
             catch (e:Exception){
-                println("Bir şeyler yolunda gitmedi!")
+                println("Bir şeyler ters gitti!")
 
             }
 
