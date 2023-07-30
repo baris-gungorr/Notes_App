@@ -46,11 +46,13 @@ class Sign_in_Fragment : Fragment() {
         }
 
         binding.login.setOnClickListener {
-            val mail: String = binding.loginemail.toString().trim()
+            val mail: String = binding.loginemail.text.toString().trim()
             val password: String = binding.loginpassword.text.toString().trim()
-            if (mail.isEmpty() || password.isEmpty())
-                Toast.makeText(requireContext(), "Alanları doldurunuz!", Toast.LENGTH_LONG).show()
 
+            if (mail.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Alanları doldurunuz!", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
             binding.progressBar.visibility = View.VISIBLE
 
