@@ -28,14 +28,16 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="275dp"
                     android:layout_marginStart="55dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="55dp"
                     android:src="@drawable/notess"
+                    android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/notesss">
 
                 </ImageView>
 
@@ -64,7 +66,7 @@
                     android:layout_width="300dp"
                     android:layout_height="45dp"
                     android:layout_marginTop="70dp"
-                    android:background="@drawable/sign_in_bg"
+                    android:background="@drawable/new_oval"
                     android:fontFamily="@font/josefinsans_medium"
                     android:text="E-MAİL İLE GİRİŞ"
                     android:textColor="@color/black"
