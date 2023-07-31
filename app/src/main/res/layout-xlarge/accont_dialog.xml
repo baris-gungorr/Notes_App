@@ -32,7 +32,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/notess"
+                    android:src="@drawable/notesss"
                     app:srcCompat="@drawable/notesss">
 
                 </ImageView>

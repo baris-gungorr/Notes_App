@@ -50,7 +50,7 @@
             android:layout_height="200dp"
             android:layout_marginBottom="152dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/notess"
+            android:src="@drawable/notesss"
             android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@+id/fp_layout"
             app:layout_constraintEnd_toEndOf="parent"

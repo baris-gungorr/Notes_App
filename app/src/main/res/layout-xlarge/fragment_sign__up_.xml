@@ -68,7 +68,7 @@
             android:layout_height="150dp"
             android:padding="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/notess"
+            android:src="@drawable/notesss"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
