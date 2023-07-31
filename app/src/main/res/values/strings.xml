@@ -10,4 +10,12 @@
     <string name="ifremi_unuttum">Şifremi Unuttum</string>
     <string name="kayit_ol">KAYIT OL</string>
     <string name="veya">Veya</string>
+    <string name="notlarim">NOTLARIM</string>
+    <string name="cikis_yap">Çıkış Yap</string>
+    <string name="renk_sec">Renk seç</string>
+    <string name="parola_sifirlama">Parola sıfırlama</string>
+    <string name="e_mail_adresini_girin">Kayıt E- mail adresini girin</string>
+    <string name="sifirlama_istegi">Sıfırlama İsteği Gönder</string>
+    <string name="giri_ekranina_don">Giriş ekranına dön</string>
+    <string name="notlari_m">Notlarım</string>
 </resources>

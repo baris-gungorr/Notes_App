@@ -6,28 +6,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="533dp"
+        android:layout_height="679dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="25dp"
-            android:backgroundTint="?attr/colorOnPrimary">
+            android:backgroundTint="?attr/colorOnPrimary"
+            app:cardCornerRadius="25dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="475dp"
+                android:layout_height="653dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="100dp"
@@ -38,21 +38,21 @@
                 </ImageView>
 
                 <TextView
-                    android:text="@string/notlarim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/google_sans_medium"
+                    android:text="@string/notlarim"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/google_sans_medium">
+                    android:textStyle="bold">
 
                 </TextView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="100dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="100dp">
 
                     <ImageView
                         android:id="@+id/user_profile"
@@ -68,10 +68,10 @@
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/colorOnSecondary"
-                    android:textSize="15sp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/google_sans_medium"
-                    android:layout_marginTop="10dp">
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="15sp">
 
                 </TextView>
 
@@ -79,22 +79,22 @@
                     android:id="@+id/user_mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:textColor="?attr/colorOnSecondary"
-                    android:textSize="11sp"
-                    android:layout_marginTop="5dp">
+                    android:textSize="11sp">
 
                 </TextView>
 
                 <android.widget.Button
                     android:id="@+id/user_logout"
-                    android:text="@string/cikis_yap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/logout_bg"
-                    android:textColor="?attr/colorOnSecondary"
                     android:fontFamily="@font/google_sans_medium"
+                    android:text="@string/cikis_yap"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textStyle="bold">
 
                 </android.widget.Button>

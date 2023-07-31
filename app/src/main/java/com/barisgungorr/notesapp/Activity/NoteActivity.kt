@@ -87,10 +87,7 @@ class NoteActivity : AppCompatActivity() {
 
 
 
-
-
         checkUser()
-
 
 
     }
@@ -161,7 +158,6 @@ class NoteActivity : AppCompatActivity() {
         }
         return false
     }
-
 
     override fun onBackPressed() {
 
