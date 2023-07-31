@@ -64,7 +64,7 @@ class Forget_Fragment : Fragment() {
 
                     else {
                         Toast.makeText(requireContext(),
-                        "Hatalı E-mail adresi ",
+                        "Geçersiz E-mail adresi",
                             Toast.LENGTH_LONG
                             ).show()
 

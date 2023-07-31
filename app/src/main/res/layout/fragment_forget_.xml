@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="5dp"
             android:padding="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,40 +70,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deverse_logo">
 
-        <EditText
-            android:id="@+id/forgot_Password_Text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Kayıt E- mail adresini girin"
-            android:inputType="textEmailAddress"
-            android:autofillHints="emailAddress">
+            <EditText
+                android:id="@+id/forgot_Password_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="10dp"
+                android:autofillHints="emailAddress"
+                android:hint="Kayıt E- mail adresini girin"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#0E0E0E">
 
 
-        </EditText>
+            </EditText>
 
-        <android.widget.Button
-           android:id="@+id/password_Recover"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/sign_in_bg"
-            android:text="Sıfırlama İsteği Gönder!"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/gobacktologin"
-            app:layout_constraintTop_toBottomOf="@+id/forgotpasswordtext">
+            <android.widget.Button
+                android:id="@+id/password_Recover"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/sign_in_bg"
+                android:text="Sıfırlama İsteği Gönder"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/gobacktologin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/forgotpasswordtext">
 
 
-
-        </android.widget.Button>
+            </android.widget.Button>
 
     </LinearLayout>
 
@@ -123,26 +124,26 @@
 
     </ProgressBar>
 
-    <android.widget.Button
-        android:id="@+id/gobacktologin"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/google_button_bg"
-        android:text="Giriş ekranına dön"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_Bar">
+        <android.widget.Button
+            android:id="@+id/gobacktologin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/google_button_bg"
+            android:text="Giriş ekranına dön"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_Bar">
 
 
-
-    </android.widget.Button>
+        </android.widget.Button>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
