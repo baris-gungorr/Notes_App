@@ -39,13 +39,9 @@ class Forget_Fragment : Fragment() {
 
             binding.progressBar.visibility = View.VISIBLE
 
-            val mail: String = binding.forgotPasswordText.toString().trim()
+            val mail: String = binding.forgotPasswordText.text.toString().trim()
             if (mail.isEmpty()) {
                 Toast.makeText(requireContext(),"Mail adresinizi girin",Toast.LENGTH_LONG).show()
-
-                binding.progressBar.visibility = View.INVISIBLE
-
-
 
             }else   {
                 FirebaseAuth.getInstance().sendPasswordResetEmail(mail).addOnCompleteListener {task ->
@@ -64,9 +60,7 @@ class Forget_Fragment : Fragment() {
 
                     else {
                         Toast.makeText(requireContext(),
-                        "Geçersiz E-mail adresi",
-                            Toast.LENGTH_LONG
-                            ).show()
+                        "Geçersiz E-mail adresi", Toast.LENGTH_LONG).show()
 
                         binding.progressBar.visibility = View.INVISIBLE
                     }

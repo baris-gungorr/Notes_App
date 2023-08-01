@@ -3,6 +3,7 @@ package com.barisgungorr.notesapp.Fragments
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -102,7 +104,7 @@ class NoteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val callback= object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -141,13 +143,17 @@ class NoteFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(10)
 
-            activity?.window?.statusBarColor= resources.getColor(android.R.color.transparent)
 
-            activity?.window?.navigationBarColor=resources.getColor(android.R.color.transparent)
+            // activity?.window?.statusBarColor= resources.getColor(android.R.color.transparent)
+            activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.transparent)
+
+          //  activity?.window?.navigationBarColor=resources.getColor(android.R.color.transparent)
+            activity?.window?.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
 
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
-            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+           activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            activity?.window?.statusBarColor = Color.TRANSPARENT
         }
 
         addNoteFab=view.findViewById(R.id.add_note_fab)
@@ -414,7 +420,7 @@ class NoteFragment : Fragment() {
 
                                 override fun onShown(transientBottomBar: Snackbar?) {
 
-                                    transientBottomBar?.setAction("Emin misiniz ?") {
+                                    transientBottomBar?.setAction("Geri al") {
 
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)
@@ -456,7 +462,7 @@ class NoteFragment : Fragment() {
 
                                 override fun onShown(transientBottomBar: Snackbar?) {
 
-                                    transientBottomBar?.setAction("Emin misiniz ?") {
+                                    transientBottomBar?.setAction("Geri al") {
 
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)

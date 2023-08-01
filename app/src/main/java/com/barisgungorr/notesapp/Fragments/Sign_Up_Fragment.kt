@@ -10,9 +10,17 @@ import androidx.navigation.Navigation
 import com.barisgungorr.Models.InformationModel
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentSignUpBinding
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class Sign_Up_Fragment : Fragment() {
@@ -90,6 +98,7 @@ class Sign_Up_Fragment : Fragment() {
                         "Kayıt 'Başarısız'",
                             Toast.LENGTH_SHORT).show()
                         binding.progressBar.visibility = View.INVISIBLE
+                        performSignUp(mail, password)
 
                     }
                 }
@@ -110,6 +119,31 @@ class Sign_Up_Fragment : Fragment() {
             Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)  // Kodlayın
 
         }
-
     }
-}
+    private fun isEmailValid(email: String): Boolean {
+        val pattern = Regex("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+\$")
+        return pattern.matches(email)
+    }
+    private fun performSignUp(mail: String,password: String) {
+       if (!isEmailValid(mail)) {
+           Toast.makeText(requireContext(),"Geçersiz E-mail formatı",Toast.LENGTH_LONG).show()
+           return
+       }
+           CoroutineScope(Dispatchers.Main).launch {
+               try {
+                   firebaseAuth.createUserWithEmailAndPassword(mail,password).await()
+                   Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)
+
+               }catch (exception:Exception) {
+                   val message = when (exception) {
+                       is FirebaseAuthWeakPasswordException -> "Parolanız güçlü değil!"
+                       is FirebaseAuthInvalidCredentialsException -> "E-mail biçimi hatalı!"
+                       is FirebaseAuthUserCollisionException -> "Bu E-mail daha önce kayıt edilmiş!"
+                       is FirebaseNetworkException -> "Ağ hatası!"
+                       else -> "Kullanıcı kaydı hatası!"
+                   }
+                   Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+               }
+           }
+       }
+    }

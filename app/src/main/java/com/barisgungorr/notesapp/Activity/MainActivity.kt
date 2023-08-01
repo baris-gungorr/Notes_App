@@ -6,11 +6,18 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
+import androidx.work.Constraints
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import com.MyWorkerNotifications
 import com.airbnb.lottie.LottieAnimationView
 import com.barisgungorr.Connections.ConnectivityObserver
 import com.barisgungorr.Connections.NetworkConnectivityObserver
@@ -22,6 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +42,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+       val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(15,TimeUnit.MINUTES)
+           .setInitialDelay(180,TimeUnit.SECONDS)
+           .build()
 
+        WorkManager.getInstance(this).enqueue(call)
+
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(call.id)
+            .observe(this){
+                val current = it.state.name
+                Log.e("Arkaplan işlem durumu",current)
+            }
 
         mainLayout=findViewById(R.id.main_layout)
 
@@ -51,13 +69,11 @@ class MainActivity : AppCompatActivity() {
 
         else{
 
-
             mainLayout.visibility= View.GONE
 
             noInternet.visibility= View.VISIBLE
 
         }
-
 
         connectivityObserver.observe().onEach {
 
@@ -154,5 +170,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+
 
 
