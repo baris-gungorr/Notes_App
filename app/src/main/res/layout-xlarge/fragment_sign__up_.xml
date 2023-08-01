@@ -102,7 +102,7 @@
                     android:id="@+id/signUpName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Adınız:"
+                    android:hint="Ad Soyad:"
                     android:inputType="textPersonName">
 
                 </EditText>

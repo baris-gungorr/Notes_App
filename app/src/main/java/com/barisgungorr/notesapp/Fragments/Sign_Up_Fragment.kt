@@ -41,7 +41,7 @@ class Sign_Up_Fragment : Fragment() {
         firebaseDatabase = FirebaseDatabase.getInstance()
 
         binding.gotologin.setOnClickListener {
-            Navigation // Kodla
+            Navigation.findNavController(view).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)
         }
 
         binding.signup.setOnClickListener {
@@ -100,22 +100,15 @@ class Sign_Up_Fragment : Fragment() {
     private fun sendEmailVerification () {
         val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
 
-        if (firebaseAuth != null) {
+        binding.progressBar.visibility = View.INVISIBLE
 
-            binding.progressBar.visibility = View.INVISIBLE
+        firebaseUser?.sendEmailVerification()?.addOnSuccessListener {
 
-            firebaseUser?.sendEmailVerification()?.addOnSuccessListener {
+            Toast.makeText(
+                requireContext(), "Doğrulama postanız 'Gönderildi'  \n Doğrulayın ve giriş yapın", Toast.LENGTH_SHORT).show()
 
-                Toast.makeText(
-                    requireContext(), "Doğrulama postanız 'Gönderildi'  \n Doğrulayın ve giriş yapın", Toast.LENGTH_SHORT).show()
+            Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)  // Kodlayın
 
-                Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)  // Kodlayın
-
-            }
-
-        } else {
-
-            Toast.makeText(requireContext(), "Doğrulama postanız 'Gönderilemedi'", Toast.LENGTH_SHORT).show()
         }
 
     }

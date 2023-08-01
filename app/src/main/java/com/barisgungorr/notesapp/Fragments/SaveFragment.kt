@@ -205,12 +205,12 @@ class SaveFragment : Fragment() {
         if (etNoteContent.text.toString().isEmpty() &&
             etTitle.text.toString().isEmpty()
         ) {
-            Toast.makeText(activity, "Something is Empty", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Bir şeyler yazın", Toast.LENGTH_SHORT).show()
         }
 
         else if (etTitle.text.toString().isEmpty()){
 
-            etTitle.setText("Untitled Note")
+            etTitle.setText("Başlıksız not")
 
             val documentReference: DocumentReference =
                 FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
@@ -228,7 +228,7 @@ class SaveFragment : Fragment() {
 
                     documentReference.set(data).addOnSuccessListener {
 
-                        Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Notunuz kaydedildi", Toast.LENGTH_SHORT).show()
 
                         navController.navigate(R.id.action_saveFragment_to_noteFragment)
 
@@ -259,7 +259,7 @@ class SaveFragment : Fragment() {
 
                     documentReference.set(data).addOnSuccessListener {
 
-                        Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Notunuz kaydedildi", Toast.LENGTH_SHORT).show()
 
                         navController.navigate(R.id.action_saveFragment_to_noteFragment)
 
