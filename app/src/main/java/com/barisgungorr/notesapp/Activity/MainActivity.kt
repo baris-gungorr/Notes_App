@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
 
-        val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(15,TimeUnit.MINUTES)
-           .setInitialDelay(180,TimeUnit.SECONDS)
+        val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(1440,TimeUnit.MINUTES)
+           .setInitialDelay(360,TimeUnit.SECONDS)
            .build()
 
         WorkManager.getInstance(this).enqueue(call)

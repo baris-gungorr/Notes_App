@@ -100,7 +100,7 @@ class MyWorkerNotifications (appContext: Context,workerParams: WorkerParameters)
 
     }
     private fun scheduleNextWork() {
-        val nextWorkTime = System.currentTimeMillis() + 2 * 24 * 60 * 60 * 1000
+        val nextWorkTime = System.currentTimeMillis() + 24 * 60 * 60 * 60 * 1000
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.UNMETERED)
             .setRequiresCharging(false)

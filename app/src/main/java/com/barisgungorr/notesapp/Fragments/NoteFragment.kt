@@ -145,7 +145,7 @@ class NoteFragment : Fragment() {
 
 
             // activity?.window?.statusBarColor= resources.getColor(android.R.color.transparent)
-            activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.transparent)
+            activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.black)
 
           //  activity?.window?.navigationBarColor=resources.getColor(android.R.color.transparent)
             activity?.window?.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
@@ -153,7 +153,7 @@ class NoteFragment : Fragment() {
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            activity?.window?.statusBarColor = Color.TRANSPARENT
+            activity?.window?.statusBarColor = Color.BLACK
         }
 
         addNoteFab=view.findViewById(R.id.add_note_fab)

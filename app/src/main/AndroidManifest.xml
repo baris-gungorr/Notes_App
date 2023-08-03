@@ -23,7 +23,9 @@
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.NotesApp">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
