@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sign_in_nav_graph"
@@ -12,36 +13,49 @@
         tools:layout="@layout/fragment_splash_" >
         <action
             android:id="@+id/action_splash_Fragment_to_sign_in_Fragment"
-            app:destination="@id/sign_in_Fragment" />
+            app:destination="@id/sign_in_Fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/forget_Fragment"
         android:name="com.barisgungorr.notesapp.Fragments.Forget_Fragment"
+        tools:layout="@layout/fragment_forget_"
         android:label="Forget_Fragment" >
         <action
             android:id="@+id/action_forget_Fragment_to_sign_in_Fragment"
-            app:destination="@id/sign_in_Fragment" />
+            app:destination="@id/sign_in_Fragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/sign_in_Fragment"
         android:name="com.barisgungorr.notesapp.Fragments.Sign_in_Fragment"
+       tools:layout="@layout/fragment_sign_in_"
         android:label="Sign_in_Fragment" >
         <action
             android:id="@+id/action_sign_in_Fragment_to_forget_Fragment"
-            app:destination="@id/forget_Fragment" />
+            app:destination="@id/forget_Fragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
         <action
             android:id="@+id/action_sign_in_Fragment_to_splash_Fragment"
             app:destination="@id/splash_Fragment" />
         <action
             android:id="@+id/action_sign_in_Fragment_to_sign_Up_Fragment"
-            app:destination="@id/sign_Up_Fragment" />
+            app:destination="@id/sign_Up_Fragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/sign_Up_Fragment"
         android:name="com.barisgungorr.notesapp.Fragments.Sign_Up_Fragment"
+       tools:layout="@layout/fragment_sign__up_"
         android:label="Sign_Up_Fragment" >
         <action
             android:id="@+id/action_sign_Up_Fragment_to_sign_in_Fragment"
-            app:destination="@id/sign_in_Fragment" />
+            app:destination="@id/sign_in_Fragment"
+            app:enterAnim="@android:anim/slide_out_right"
+            app:exitAnim="@android:anim/slide_in_left" />
     </fragment>
 </navigation>
