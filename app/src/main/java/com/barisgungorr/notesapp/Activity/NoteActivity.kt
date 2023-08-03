@@ -159,6 +159,7 @@ class NoteActivity : AppCompatActivity() {
         return false
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
 
         if (noInternet.isVisible){

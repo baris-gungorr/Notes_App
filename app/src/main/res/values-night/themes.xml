@@ -1,8 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.NotesApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/black</item>
@@ -15,12 +13,10 @@
         <item name="backgroundColor">@color/transparent</item>
         <item name="android:navigationBarColor">@color/transparent</item>
         <item name="color">#323232</item>
-        <!-- Customize your theme here. -->
-    </style>
 
+    </style>
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
 
-        <item name="bottomSheetStyle">@style/BottomSheetDialogTheme</item>
-
+    <item name="bottomSheetStyle">@style/BottomSheetDialogTheme</item>
     </style>
 </resources>

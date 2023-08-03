@@ -12,7 +12,7 @@
     <color name="transparent">#00000000</color>
     <color name="grey">#EBEBEB</color>
 
-    <color name="status_bar">?attr/colorOnPrimary</color>
+    <color name="status_bar">@color/black</color>
 
     <!--color palette-->
     <color name="purple">#D4C4E3</color>

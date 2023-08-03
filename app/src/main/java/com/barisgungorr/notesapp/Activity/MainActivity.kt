@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
@@ -41,8 +42,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // MainActivity veya diğer uygun sınıflarınızın onCreate() metodu içinde
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
-       val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(15,TimeUnit.MINUTES)
+
+        val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(15,TimeUnit.MINUTES)
            .setInitialDelay(180,TimeUnit.SECONDS)
            .build()
 
