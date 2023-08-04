@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Fragments
+package com.barisgungorr.view.Fragment
 
 import android.app.Dialog
 import android.content.Context
@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
@@ -27,14 +26,14 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.barisgungorr.Models.GridModel
-import com.barisgungorr.Models.InformationModel
-import com.barisgungorr.Models.NoteModel
-import com.barisgungorr.Utils.SwipeGesture
-import com.barisgungorr.Utils.hideKeyboard
-import com.barisgungorr.notesapp.Activity.MainActivity
-import com.barisgungorr.notesapp.Adapters.NoteAdapter
+import com.barisgungorr.Model.GridModel
+import com.barisgungorr.Model.InformationModel
+import com.barisgungorr.Model.NoteModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.view.Activity.MainActivity
+import com.barisgungorr.view.Adapter.NoteAdapter
+import com.barisgungorr.view.Utils.SwipeGesture
+import com.barisgungorr.view.Utils.hideKeyboard
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -144,10 +143,10 @@ class NoteFragment : Fragment() {
             delay(10)
 
 
-            // activity?.window?.statusBarColor= resources.getColor(android.R.color.transparent)
+
             activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),R.color.black)
 
-          //  activity?.window?.navigationBarColor=resources.getColor(android.R.color.transparent)
+
             activity?.window?.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.transparent)
 
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -278,7 +277,7 @@ class NoteFragment : Fragment() {
 
                 try {
                     val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("166513008091-8r3be9dd0dvbpr5hkoaa5d0afmtm82fs.apps.googleusercontent.com")
+                        .requestIdToken("YOUR_ID")
                         .requestEmail()
                         .build()
 
@@ -320,7 +319,7 @@ class NoteFragment : Fragment() {
 
                 options = FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query,NoteModel::class.java).setLifecycleOwner(viewLifecycleOwner).build()
 
-                firebaseAdapter=NoteAdapter(options,requireActivity())
+                firebaseAdapter= NoteAdapter(options,requireActivity())
 
                 recyclerViewSetUp()
 
@@ -504,7 +503,7 @@ class NoteFragment : Fragment() {
 
         options = FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query,NoteModel::class.java).setLifecycleOwner(viewLifecycleOwner).build()
 
-        firebaseAdapter=NoteAdapter(options,requireActivity())
+        firebaseAdapter= NoteAdapter(options,requireActivity())
 
         recyclerViewSetUp()
 

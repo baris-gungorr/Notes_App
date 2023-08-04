@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Activity
+package com.barisgungorr.view.Activity
 
 import android.content.Context
 import android.content.Intent
@@ -13,15 +13,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.MyWorkerNotifications
+import com.barisgungorr.viewmodel.MyWorkerNotifications
 import com.airbnb.lottie.LottieAnimationView
-import com.barisgungorr.Connections.ConnectivityObserver
-import com.barisgungorr.Connections.NetworkConnectivityObserver
+import com.barisgungorr.Model.Connection.ConnectivityObserver
+import com.barisgungorr.Model.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -42,12 +39,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // MainActivity veya diğer uygun sınıflarınızın onCreate() metodu içinde
+
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
 
         val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(1440,TimeUnit.MINUTES)
-           .setInitialDelay(360,TimeUnit.SECONDS)
+           .setInitialDelay(1440,TimeUnit.SECONDS)
            .build()
 
         WorkManager.getInstance(this).enqueue(call)
@@ -81,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
         connectivityObserver.observe().onEach {
 
-            if (it==ConnectivityObserver.Status.Available){
+            if (it== ConnectivityObserver.Status.Available){
 
                 mainLayout.visibility= View.VISIBLE
 
@@ -121,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
+                    .requestIdToken("YOUR_ID")
                     .requestEmail()
                     .build()
 

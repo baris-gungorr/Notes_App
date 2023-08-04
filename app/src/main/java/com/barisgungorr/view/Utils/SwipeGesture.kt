@@ -1,4 +1,4 @@
-package com.barisgungorr.Utils
+package com.barisgungorr.view.Utils
 
 import android.content.Context
 import android.graphics.Canvas
@@ -17,7 +17,7 @@ val deleteColor = ContextCompat.getColor(context, R.color.deleteColor)
     val deleIcon = R.drawable.ic_round_delete_24
 
 
-    override fun onMove(  //sürükleme işlemlerini dinlemek
+    override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder

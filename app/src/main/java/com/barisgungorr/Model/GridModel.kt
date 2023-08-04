@@ -1,4 +1,4 @@
-package com.barisgungorr.Models
+package com.barisgungorr.Model
 
 data class GridModel(
     var isGrid : Boolean

@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Fragments
+package com.barisgungorr.view.Fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,9 +19,9 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.barisgungorr.Models.NoteModel
-import com.barisgungorr.Utils.hideKeyboard
+import com.barisgungorr.Model.NoteModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.view.Utils.hideKeyboard
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton

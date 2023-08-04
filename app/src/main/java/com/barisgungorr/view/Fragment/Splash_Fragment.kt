@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Fragments
+package com.barisgungorr.view.Fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -14,9 +14,9 @@ import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.navigation.Navigation
 import com.airbnb.lottie.LottieAnimationView
-import com.barisgungorr.Models.InformationModel
-import com.barisgungorr.notesapp.Activity.NoteActivity
+import com.barisgungorr.Model.InformationModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.view.Activity.NoteActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -79,7 +79,7 @@ class Splash_Fragment : Fragment() {
         checkUser()
 
        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-           .requestIdToken("166513008091-0eeirmkqfk81hlkr2j590reid1sfjbff.apps.googleusercontent.com")
+           .requestIdToken("YOUR_ID")
            .requestEmail()
            .build()
 
@@ -212,7 +212,7 @@ class Splash_Fragment : Fragment() {
 
             try {
                 val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("166513008091-0eeirmkqfk81hlkr2j590reid1sfjbff.apps.googleusercontent.com")
+                    .requestIdToken("YOUR_ID")
                     .requestEmail()
                     .build()
 

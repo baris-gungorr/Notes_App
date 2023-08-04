@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Activity
+package com.barisgungorr.view.Activity
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -12,8 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
-import com.barisgungorr.Connections.ConnectivityObserver
-import com.barisgungorr.Connections.NetworkConnectivityObserver
+import com.barisgungorr.Model.Connection.ConnectivityObserver
+import com.barisgungorr.Model.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -64,7 +64,7 @@ class NoteActivity : AppCompatActivity() {
 
         connectivityObserver.observe().onEach {
 
-            if (it==ConnectivityObserver.Status.Available){
+            if (it== ConnectivityObserver.Status.Available){
 
                 mainLayout.visibility= View.VISIBLE
 
@@ -108,7 +108,7 @@ class NoteActivity : AppCompatActivity() {
 
             try {
                 val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
+                    .requestIdToken("YOUR_ID")
                     .requestEmail()
                     .build()
 
@@ -125,11 +125,9 @@ class NoteActivity : AppCompatActivity() {
             }
 
 
-
             FirebaseAuth.getInstance().signOut()
 
         }
-
     }
 
     fun isNetworkAvailable(context: Context?): Boolean {

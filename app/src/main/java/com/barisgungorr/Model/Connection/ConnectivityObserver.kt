@@ -1,7 +1,6 @@
-package com.barisgungorr.Connections
+package com.barisgungorr.Model.Connection
 
 import kotlinx.coroutines.flow.Flow
-import javax.net.ssl.SSLEngineResult.Status
 
 
 interface ConnectivityObserver {

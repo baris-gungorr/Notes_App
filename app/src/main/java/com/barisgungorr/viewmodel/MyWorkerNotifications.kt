@@ -1,27 +1,21 @@
-package com
+package com.barisgungorr.viewmodel
 
-import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
 import androidx.work.Constraints
-import androidx.work.CoroutineWorker
 import androidx.work.ExistingWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.barisgungorr.notesapp.Activity.MainActivity
+import com.barisgungorr.view.Activity.MainActivity
 import com.barisgungorr.notesapp.R
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
@@ -55,7 +49,7 @@ class MyWorkerNotifications (appContext: Context,workerParams: WorkerParameters)
         val notificationManager =
             applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        val intent = Intent(applicationContext,MainActivity::class.java)
+        val intent = Intent(applicationContext, MainActivity::class.java)
         val goIntent = PendingIntent.getActivity(applicationContext,1,intent,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
         val bigTextStyle = NotificationCompat.BigTextStyle()

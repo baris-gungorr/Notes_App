@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Adapters
+package com.barisgungorr.view.Adapter
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.Models.NoteModel
+import com.barisgungorr.Model.NoteModel
 import com.barisgungorr.notesapp.R
-import com.bumptech.glide.util.Util.getSnapshot
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import io.noties.markwon.AbstractMarkwonPlugin
@@ -87,7 +86,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>, var context 
             holder.titleCard.setOnClickListener {
 
                 val bundle = Bundle()
-                bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
+                bundle.putString("noteId", NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
@@ -96,7 +95,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>, var context 
             holder.contextCard.setOnClickListener {
 
                 val bundle = Bundle()
-                bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
+                bundle.putString("noteId", NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
@@ -105,7 +104,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>, var context 
             holder.noteTitle.setOnClickListener {
 
                 val bundle = Bundle()
-                bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
+                bundle.putString("noteId", NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 
@@ -114,7 +113,7 @@ class NoteAdapter(var options: FirestoreRecyclerOptions<NoteModel>, var context 
             holder.noteContent.setOnClickListener {
 
                 val bundle = Bundle()
-                bundle.putString("noteId",NoteAdapter(options,context).snapshots.getSnapshot(position).id)
+                bundle.putString("noteId", NoteAdapter(options,context).snapshots.getSnapshot(position).id)
                 Navigation.findNavController(it)
                     .navigate(R.id.action_noteFragment_to_saveFragment, bundle)
 

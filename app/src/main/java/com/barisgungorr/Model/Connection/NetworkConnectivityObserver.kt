@@ -1,4 +1,4 @@
-package com.barisgungorr.Connections
+package com.barisgungorr.Model.Connection
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-
 
 
 class NetworkConnectivityObserver(

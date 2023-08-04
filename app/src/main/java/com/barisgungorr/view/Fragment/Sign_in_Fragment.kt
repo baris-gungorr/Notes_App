@@ -1,4 +1,4 @@
-package com.barisgungorr.notesapp.Fragments
+package com.barisgungorr.view.Fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,12 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.Navigation
-import com.barisgungorr.notesapp.Activity.NoteActivity
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentSignInBinding
+import com.barisgungorr.view.Activity.NoteActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -77,7 +75,7 @@ class Sign_in_Fragment : Fragment() {
             Toast.makeText(requireContext(),"Başarılı Giriş",Toast.LENGTH_SHORT).show()
             binding.progressBar.visibility = View.INVISIBLE
 
-            val intent =Intent(activity,NoteActivity::class.java)
+            val intent =Intent(activity, NoteActivity::class.java)
             startActivity(intent)
 
             activity?.finish()
