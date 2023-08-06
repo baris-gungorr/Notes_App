@@ -15,6 +15,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.navigation.NavController
@@ -99,6 +100,7 @@ class SaveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         noteContentFragmentParent=view.findViewById(R.id.noteContentFragmentParent)
         toolbarFragmentNoteContent=view.findViewById(R.id.toolbarFragmentNoteContent)
         navController=Navigation.findNavController(view)

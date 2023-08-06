@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.Navigation
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentForgetBinding
@@ -26,6 +27,7 @@ class Forget_Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         binding = FragmentForgetBinding.bind(view)
 
