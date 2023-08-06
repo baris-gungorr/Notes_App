@@ -34,6 +34,7 @@
 - Navigation
 - WorkManager
 - Glide
+
 For animation : Lottie used
 
  ✏️ Dependency
