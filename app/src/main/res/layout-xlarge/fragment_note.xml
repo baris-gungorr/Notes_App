@@ -36,7 +36,7 @@
                     android:id="@+id/app_title"
                     android:fontFamily="@font/google_sans_bold"
                     android:text="@string/notlari_m"
-                    android:textSize="30sp"
+                    android:textSize="50sp"
                     android:textColor="@color/black"
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="2dp">
@@ -45,9 +45,9 @@
 
                 <ImageView
                     android:id="@+id/note_user"
-                    android:src="@drawable/notesss"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:src="@drawable/aa"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     android:padding="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/app_title"
@@ -63,8 +63,8 @@
                 <ImageView
                     android:id="@+id/note_grid"
                     android:src="@drawable/ic_round_grid_view_24"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
                     app:layout_constraintEnd_toStartOf="@+id/note_user"
                     app:layout_constraintStart_toEndOf="@+id/app_title"
                     app:layout_constraintTop_toTopOf="@+id/app_title"
@@ -102,7 +102,7 @@
                         android:paddingTop="4dp"
                         android:paddingEnd="18dp"
                         android:paddingBottom="5dp"
-                        android:textSize="16sp"
+                        android:textSize="46sp"
                         android:importantForAutofill="no"
                         android:inputType="textFilter"
                         android:layout_weight="3">
@@ -124,17 +124,19 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_note"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:background="@color/transparent"
         android:backgroundTint="@color/transparent"
         android:clipToPadding="false"
         android:paddingBottom="5dp"
         android:transitionGroup="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/note_layout">
 
     </androidx.recyclerview.widget.RecyclerView>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -156,43 +158,44 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
         android:id="@+id/add_note_fab"
-        android:focusable="true"
-        android:clickable="true"
+        android:layout_width="430dp"
+        android:layout_height="200dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
         android:animateLayoutChanges="true"
-        android:orientation="horizontal"
-        android:clipToPadding="false"
         android:background="@drawable/fab_btn_corner"
-        android:layout_margin="16dp">
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center_vertical"
             android:id="@+id/inner_fab"
-            android:src="@drawable/ic_round_add_24"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
             android:elevation="0dp"
-            app:fabSize="normal"
+            android:padding="10dp"
+            android:src="@drawable/ic_round_add_24"
             app:borderWidth="0dp"
-            android:padding="10dp">
+            app:fabSize="normal">
 
         </ImageView>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/chatFabText"
-            android:fontFamily="@font/google_sans_regular"
-            android:text="Not Ekle"
-            android:textColor="?attr/colorOnPrimary"
-            android:textStyle="bold"
-            android:layout_marginEnd="20dp"
+            android:layout_width="364dp"
+            android:layout_height="53dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/google_sans_regular"
+            android:gravity="center"
+            android:text="Not Ekle"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:gravity="center">
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="50dp"
+            android:textStyle="bold">
 
         </TextView>
 

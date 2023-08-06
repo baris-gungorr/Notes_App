@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -108,7 +109,7 @@ class NoteActivity : AppCompatActivity() {
 
             try {
                 val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("YOUR_ID")
+                    .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
                     .requestEmail()
                     .build()
 
@@ -121,13 +122,15 @@ class NoteActivity : AppCompatActivity() {
             }
             catch (e:Exception){
 
-
+            Log.e("Hata","Hatalı")
             }
+
 
 
             FirebaseAuth.getInstance().signOut()
 
         }
+
     }
 
     fun isNetworkAvailable(context: Context?): Boolean {

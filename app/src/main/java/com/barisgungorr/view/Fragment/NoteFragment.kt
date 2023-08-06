@@ -277,7 +277,7 @@ class NoteFragment : Fragment() {
 
                 try {
                     val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("YOUR_ID")
+                        .requestIdToken("166513008091-8r3be9dd0dvbpr5hkoaa5d0afmtm82fs.apps.googleusercontent.com")
                         .requestEmail()
                         .build()
 
@@ -461,7 +461,7 @@ class NoteFragment : Fragment() {
 
                                 override fun onShown(transientBottomBar: Snackbar?) {
 
-                                    transientBottomBar?.setAction("Geri al") {
+                                    transientBottomBar?.setAction("GERİ AL") {
 
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)

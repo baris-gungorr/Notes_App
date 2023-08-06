@@ -3,15 +3,18 @@
     android:id="@+id/noteContentFragmentParent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
     tools:context="com.barisgungorr.view.Fragment.SaveFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <RelativeLayout
         android:id="@+id/toolbarFragmentNoteContent"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -54,7 +57,6 @@
 
     </RelativeLayout>
 
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -63,9 +65,9 @@
 
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/scroll_view"
             android:fillViewport="true">
 
             <LinearLayout
@@ -74,33 +76,33 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:background="@null"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:id="@+id/et_title"
-                    android:inputType="none"
-                    android:textSize="22sp"
-                    android:importantForAutofill="no"
+                    android:background="@null"
                     android:fontFamily="@font/google_sans_medium"
-                    android:hint="Başlık">
+                    android:hint="Başlık"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textSize="22sp">
 
                 </EditText>
 
                 <com.yahiaangelo.markdownedittext.MarkdownEditText
+                    android:id="@+id/et_noteContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22sp"
-                    android:layout_marginEnd="22dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="22dp"
                     android:background="@null"
                     android:hint="Not"
                     android:padding="10dp"
-                    android:textSize="16sp"
-                    android:id="@+id/et_noteContent">
+                    android:textSize="16sp">
 
                 </com.yahiaangelo.markdownedittext.MarkdownEditText>
 
@@ -109,7 +111,6 @@
 
 
         </androidx.core.widget.NestedScrollView>
-
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

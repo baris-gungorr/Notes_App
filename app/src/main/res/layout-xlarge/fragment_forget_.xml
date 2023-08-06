@@ -36,7 +36,7 @@
                 android:textAlignment="center"
                 android:text="@string/parola_sifirlama"
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="30dp"
+                android:textSize="50dp"
                 android:textStyle="bold">
 
             </TextView>
@@ -46,40 +46,39 @@
 
         <ImageView
             android:id="@+id/deverse_logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginBottom="152dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/notesss"
+            android:layout_width="525dp"
+            android:layout_height="512dp"
             android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/fp_layout"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_round"
-            app:srcCompat="@drawable/notesss"
+            app:srcCompat="@drawable/aa"
             tools:ignore="ContentDescription">
 
         </ImageView>
 
         <LinearLayout
             android:id="@+id/fp_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="973dp"
+            android:layout_height="410dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/progress_Bar"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deverse_logo">
 
             <EditText
                 android:id="@+id/forgot_Password_Text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="900dp"
+                android:layout_height="96dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="10dp"
                 android:autofillHints="emailAddress"
+                android:textSize="50dp"
                 android:hint="@string/e_mail_adresini_girin"
                 android:inputType="textEmailAddress"
                 android:textColorHint="#0E0E0E">
@@ -89,15 +88,15 @@
 
             <android.widget.Button
                 android:id="@+id/password_Recover"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_width="923dp"
+                android:layout_height="165dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/new_oval"
                 android:text="@string/sifirlama_istegi"
-                android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textColor="@color/whitee"
+                android:textSize="46sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/gobacktologin"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +106,7 @@
 
             </android.widget.Button>
 
-    </LinearLayout>
+        </LinearLayout>
 
 
     <ProgressBar
@@ -128,16 +127,16 @@
 
         <android.widget.Button
             android:id="@+id/gobacktologin"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_width="877dp"
+            android:layout_height="145dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/new_oval"
             android:text="@string/giri_ekranina_don"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/whitee"
+            android:textSize="46sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

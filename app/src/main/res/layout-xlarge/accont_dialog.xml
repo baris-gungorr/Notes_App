@@ -6,12 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="533dp"
-        android:layout_height="679dp"
+        android:layout_width="547dp"
+        android:layout_height="689dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -32,8 +34,8 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/notesss"
-                    app:srcCompat="@drawable/notesss">
+                    android:src="@drawable/aa"
+                    app:srcCompat="@drawable/aa">
 
                 </ImageView>
 

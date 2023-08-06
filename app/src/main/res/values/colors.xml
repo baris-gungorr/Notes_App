@@ -11,6 +11,9 @@
     <color name="archiveColor">#00FF00</color>
     <color name="transparent">#00000000</color>
     <color name="grey">#EBEBEB</color>
+    <color name="kahve">#5c3d2b </color>
+    <color name="whitee">#f7f4e8</color>
+
 
     <color name="status_bar">@color/black</color>
 

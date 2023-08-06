@@ -32,8 +32,8 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/notesss"
-                    app:srcCompat="@drawable/notesss">
+                    android:src="@drawable/aa"
+                    app:srcCompat="@drawable/aa">
 
                 </ImageView>
 

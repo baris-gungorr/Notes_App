@@ -64,25 +64,25 @@
 
         <ImageView
             android:id="@+id/deverse_logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
             android:padding="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/notesss"
+            android:src="@drawable/aa"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/notesss"
+            app:srcCompat="@drawable/aa"
             tools:ignore="ContentDescription">
 
         </ImageView>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="478dp"
+            android:layout_height="289dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/signup"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ad Soyad:"
-                    android:inputType="textPersonName">
+                    android:inputType="textPersonName"
+                    android:textSize="20dp">
 
                 </EditText>
 
@@ -124,7 +125,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-mail:"
-                    android:inputType="textEmailAddress">
+                    android:inputType="textEmailAddress"
+                    android:textSize="20dp">
 
                 </EditText>
 
@@ -145,7 +147,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Parola:"
-                    android:inputType="textPassword">
+                    android:inputType="textPassword"
+                    android:textSize="20dp">
 
                 </EditText>
 
@@ -165,7 +168,8 @@
                     android:id="@+id/signUpRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Parola Tekrar:">
+                    android:hint="Parola Tekrar:"
+                    android:textSize="20dp">
 
                 </EditText>
 
@@ -184,8 +188,8 @@
             android:layout_marginRight="30dp"
             android:background="@drawable/new_oval"
             android:text="KAYIT OL"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/whitee"
+            android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/progress_Bar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -203,10 +207,10 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/card_blue"
+            android:background="@color/kahve"
             android:text="ZATEN KAYITLI MISIN ?"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textColor="@color/whitee"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

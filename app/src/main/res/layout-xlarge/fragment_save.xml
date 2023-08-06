@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/toolbarFragmentNoteContent"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="177dp">
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -29,7 +29,7 @@
             android:text="Düzenleme"
             android:textAlignment="center"
             android:textColor="?attr/colorOnSecondary"
-            android:textSize="14sp"
+            android:textSize="54sp"
             android:textStyle="bold">
 
 
@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/save_note"
-            android:layout_width="41dp"
-            android:layout_height="40dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="7dp"
@@ -74,33 +74,33 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="134dp"
                     android:layout_marginStart="20dp"
-                    android:background="@null"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:id="@+id/et_title"
-                    android:inputType="none"
-                    android:textSize="22sp"
-                    android:importantForAutofill="no"
+                    android:background="@null"
                     android:fontFamily="@font/google_sans_medium"
-                    android:hint="Başlık">
+                    android:hint="Başlık"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textSize="42sp">
 
                 </EditText>
 
                 <com.yahiaangelo.markdownedittext.MarkdownEditText
+                    android:id="@+id/et_noteContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="131dp"
                     android:layout_marginStart="22sp"
-                    android:layout_marginEnd="22dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="22dp"
                     android:background="@null"
                     android:hint="Not"
                     android:padding="10dp"
-                    android:textSize="16sp"
-                    android:id="@+id/et_noteContent">
+                    android:textSize="46sp">
 
                 </com.yahiaangelo.markdownedittext.MarkdownEditText>
 
@@ -112,8 +112,8 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             android:id="@+id/fab_color_pick"
             android:layout_margin="15dp"
             android:layout_gravity="bottom|right"

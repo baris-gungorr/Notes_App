@@ -5,9 +5,7 @@
 
     <data>
 
-
     </data>
-
 
 <FrameLayout
 
@@ -53,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="KULLANICI KAYIT"
                 android:textAlignment="center"
+                android:layout_marginTop="5dp"
                 android:textColor="?attr/colorOnSecondary"
                 android:textSize="30dp"
                 android:textStyle="bold">
@@ -68,13 +67,13 @@
             android:layout_height="150dp"
             android:padding="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/notesss"
+            android:src="@drawable/aa"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/notesss"
+            app:srcCompat="@drawable/aa"
             tools:ignore="ContentDescription">
 
         </ImageView>
@@ -103,6 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ad Soyad:"
+                    android:backgroundTint="@color/whitee"
                     android:inputType="textPersonName">
 
                 </EditText>
@@ -123,6 +123,7 @@
                     android:id="@+id/signUpEmaail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/whitee"
                     android:hint="E-mail:"
                     android:inputType="textEmailAddress">
 
@@ -145,6 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Parola:"
+                    android:backgroundTint="@color/whitee"
                     android:inputType="textPassword">
 
                 </EditText>
@@ -165,6 +167,7 @@
                     android:id="@+id/signUpRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/whitee"
                     android:hint="Parola Tekrar:">
 
                 </EditText>
@@ -184,7 +187,7 @@
             android:layout_marginRight="30dp"
             android:background="@drawable/new_oval"
             android:text="KAYIT OL"
-            android:textColor="@color/black"
+            android:textColor="@color/whitee"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/progress_Bar"
@@ -205,7 +208,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/new_oval"
             android:text="ZATEN KAYITLI MISIN ?"
-            android:textColor="@color/black"
+            android:textColor="@color/whitee"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

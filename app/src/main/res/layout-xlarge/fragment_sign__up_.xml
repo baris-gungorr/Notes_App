@@ -21,8 +21,8 @@
 
         <ProgressBar
             android:id="@+id/progress_Bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="120dp"
+            android:layout_height="82dp"
             android:layout_above="@+id/gotologin"
             android:layout_below="@+id/signup"
             android:layout_centerHorizontal="true"
@@ -54,7 +54,7 @@
                 android:text="KULLANICI KAYIT"
                 android:textAlignment="center"
                 android:textColor="?attr/colorOnSecondary"
-                android:textSize="30dp"
+                android:textSize="40dp"
                 android:textStyle="bold">
 
             </TextView>
@@ -64,25 +64,24 @@
 
         <ImageView
             android:id="@+id/deverse_logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="112dp"
             android:padding="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/notesss"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            android:src="@drawable/aa"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.5"
-            app:srcCompat="@drawable/notesss"
+            app:srcCompat="@drawable/aa"
             tools:ignore="ContentDescription">
 
         </ImageView>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="983dp"
+            android:layout_height="358dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/signup"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +102,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ad Soyad:"
-                    android:inputType="textPersonName">
+                    android:inputType="textPersonName"
+                    android:textSize="30dp">
 
                 </EditText>
 
@@ -124,7 +124,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-mail:"
-                    android:inputType="textEmailAddress">
+                    android:inputType="textEmailAddress"
+                    android:textSize="30dp">
 
                 </EditText>
 
@@ -145,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Parola:"
-                    android:inputType="textPassword">
+                    android:inputType="textPassword"
+                    android:textSize="30dp">
 
                 </EditText>
 
@@ -165,7 +167,8 @@
                     android:id="@+id/signUpRePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Parola Tekrar:">
+                    android:hint="Parola Tekrar:"
+                    android:textSize="30dp">
 
                 </EditText>
 
@@ -178,14 +181,14 @@
         <android.widget.Button
             android:id="@+id/signup"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/new_oval"
             android:text="KAYIT OL"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/whitee"
+            android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/progress_Bar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -198,15 +201,15 @@
         <android.widget.Button
             android:id="@+id/gotologin"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/card_blue"
+            android:background="@color/kahve"
             android:text="ZATEN KAYITLI MISIN ?"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textColor="@color/whitee"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

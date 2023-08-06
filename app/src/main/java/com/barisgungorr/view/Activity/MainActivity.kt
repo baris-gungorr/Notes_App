@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
             try {
                 val googleSignInOptions= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestIdToken("YOUR_ID")
+                    .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
                     .requestEmail()
                     .build()
 
