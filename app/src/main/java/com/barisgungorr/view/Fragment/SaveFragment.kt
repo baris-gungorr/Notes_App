@@ -207,7 +207,7 @@ class SaveFragment : Fragment() {
         if (etNoteContent.text.toString().isEmpty() &&
             etTitle.text.toString().isEmpty()
         ) {
-            Toast.makeText(activity, "Bir şeyler yazın", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Bir şeyler yazmış olmalısınız", Toast.LENGTH_SHORT).show()
         }
 
         else if (etTitle.text.toString().isEmpty()){

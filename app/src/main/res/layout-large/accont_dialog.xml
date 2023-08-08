@@ -98,6 +98,20 @@
                     android:textStyle="bold">
 
                 </android.widget.Button>
+                <Button
+                    android:id="@+id/delete_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/black"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:text="HESABIMI SİL"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/josefinsans_medium">
+
+                </Button>
 
             </LinearLayout>
 

@@ -6,8 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="547dp"
-        android:layout_height="689dp"
+        android:layout_width="600dp"
+        android:layout_height="700dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"
@@ -22,8 +22,8 @@
             app:cardCornerRadius="25dp">
 
             <LinearLayout
-                android:layout_width="475dp"
-                android:layout_height="653dp"
+                android:layout_width="600dp"
+                android:layout_height="700dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
@@ -32,8 +32,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/aa"
                     app:srcCompat="@drawable/aa">
 
@@ -58,8 +58,8 @@
 
                     <ImageView
                         android:id="@+id/user_profile"
-                        android:layout_width="125dp"
-                        android:layout_height="125dp"
+                        android:layout_width="175dp"
+                        android:layout_height="175dp"
                         android:scaleType="centerCrop">
 
                     </ImageView>
@@ -89,17 +89,34 @@
 
                 <android.widget.Button
                     android:id="@+id/user_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/logout_bg"
                     android:fontFamily="@font/google_sans_medium"
                     android:text="@string/cikis_yap"
+                    android:textSize="30dp"
                     android:textColor="?attr/colorOnSecondary"
                     android:textStyle="bold">
 
                 </android.widget.Button>
+
+                <Button
+                    android:id="@+id/delete_account"
+                    android:layout_width="244dp"
+                    android:layout_height="125dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/josefinsans_medium"
+                    android:text="HESABIMI SİL"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:textStyle="bold">
+
+                </Button>
+
 
             </LinearLayout>
 

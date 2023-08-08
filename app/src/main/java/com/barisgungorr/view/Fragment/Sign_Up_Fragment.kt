@@ -118,7 +118,7 @@ class Sign_Up_Fragment : Fragment() {
             Toast.makeText(
                 requireContext(), "Doğrulama postanız 'Gönderildi'  \n Doğrulayın ve giriş yapın", Toast.LENGTH_SHORT).show()
 
-            Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)  // Kodlayın
+            Navigation.findNavController(requireView()).navigate(R.id.action_sign_Up_Fragment_to_sign_in_Fragment)
 
         }
     }

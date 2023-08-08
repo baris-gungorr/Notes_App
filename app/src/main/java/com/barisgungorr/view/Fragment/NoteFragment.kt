@@ -423,6 +423,7 @@ class NoteFragment : Fragment() {
 
                                     transientBottomBar?.setAction("Geri al") {
 
+
                                         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
                                             .collection("myNotes").document().set(note)
 
@@ -435,13 +436,13 @@ class NoteFragment : Fragment() {
                                 animationMode = Snackbar.ANIMATION_MODE_FADE
                                 setAnchorView(R.id.add_note_fab)
                             }
-                            snackBar.setActionTextColor(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.orangeRed
-                                )
-                            )
+                            snackBar.setActionTextColor(ContextCompat.getColor
+                                (requireContext(), R.color.orangeRed))
+                            snackBar.setActionTextColor(Color.BLUE)
+                            snackBar.setBackgroundTint(Color.YELLOW)
+
                             snackBar.show()
+
 
                         }
                         ItemTouchHelper.RIGHT->{

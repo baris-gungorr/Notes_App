@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deverse_logo">
@@ -59,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:backgroundTint="@color/black"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,8 +73,10 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/whitee"
                     android:hint="Email:"
+
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"
+                    android:textColorHint="#141313" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -93,6 +97,7 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="password"
                     android:backgroundTint="@color/whitee"
+                    android:textColorHint="@color/black"
                     android:hint="Parola:"
                     android:inputType="textPassword" />
 
