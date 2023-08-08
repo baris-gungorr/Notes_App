@@ -54,13 +54,12 @@
                     app:cardCornerRadius="100dp"
                     android:layout_marginTop="10dp">
 
-                    <ImageView
+
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/user_profile"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:scaleType="centerCrop">
-
-                    </ImageView>
+                        android:scaleType="centerCrop" />
 
                 </androidx.cardview.widget.CardView>
 

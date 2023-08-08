@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.barisgungorr.view.Fragment.NoteFragment"
-    app:statusBarBackground="@color/black"
-   >
+    app:statusBarBackground="@color/black">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

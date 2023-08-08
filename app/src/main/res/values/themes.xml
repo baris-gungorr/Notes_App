@@ -16,6 +16,8 @@
         <item name="android:navigationBarColor">@color/transparent</item>
         <item name="color">#EAEFF3</item>
         <item name="bottomSheetStyle">@style/BottomSheetDialogTheme</item>
+
+
     </style>
 
     <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog" />

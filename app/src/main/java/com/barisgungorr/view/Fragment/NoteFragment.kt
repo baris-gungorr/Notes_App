@@ -1,9 +1,12 @@
 package com.barisgungorr.view.Fragment
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,6 +25,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -85,6 +89,7 @@ class NoteFragment : Fragment() {
 
 
 
+
     var layoutManager =
         StaggeredGridLayoutManager(1
             , StaggeredGridLayoutManager.VERTICAL)
@@ -99,6 +104,7 @@ class NoteFragment : Fragment() {
         enterTransition = MaterialElevationScale(true).apply {
             duration = 350
         }
+
 
     }
 
@@ -167,7 +173,8 @@ class NoteFragment : Fragment() {
 
 
 
-        FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString()).addSnapshotListener { value, error ->
+
+        FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString()).addSnapshotListener { value, _ ->
 
             val data=value?.toObject(GridModel::class.java)
 
@@ -176,7 +183,7 @@ class NoteFragment : Fragment() {
                 isGrid = data.isGrid
             }
 
-            if (isGrid==true){
+            if (isGrid){
 
                 layoutManager =
                     StaggeredGridLayoutManager(2
@@ -197,7 +204,7 @@ class NoteFragment : Fragment() {
 
             noteGrid.setOnClickListener {
 
-                if (isGrid==false) {
+                if (!isGrid) {
 
                     layoutManager =
                         StaggeredGridLayoutManager(
@@ -210,7 +217,7 @@ class NoteFragment : Fragment() {
 
                     isGrid = true
 
-                    gridModel.isGrid = isGrid
+
 
                     FirebaseFirestore.getInstance().collection("notes")
                         .document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
@@ -229,7 +236,7 @@ class NoteFragment : Fragment() {
 
                     isGrid=false
 
-                    gridModel.isGrid=isGrid
+
 
                     FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
 
@@ -251,6 +258,10 @@ class NoteFragment : Fragment() {
             val userName:TextView?=dialog.findViewById(R.id.user_name)
             val userMail:TextView?=dialog.findViewById(R.id.user_mail)
             val userLogout: Button?=dialog.findViewById(R.id.user_logout)
+            val deleteAccount : Button?=dialog.findViewById(R.id.delete_account)
+
+
+
 
 
             FirebaseDatabase.getInstance().reference.child("Users").child(FirebaseAuth.getInstance().uid.toString())
@@ -259,8 +270,19 @@ class NoteFragment : Fragment() {
 
                         val data= snapshot.getValue(InformationModel::class.java)
 
+                        if (data?.userProfilePhoto != null) {
+                            Picasso.get().load(data.userProfilePhoto)
+                                .placeholder(R.drawable.dp_holder) // Yedek resim drawable dosyası
+                                .error(R.drawable.dp_holder) // Hata durumunda yine yedek resim
+                                .into(userProfile!!)
+                        }else   {
+                            userProfile?.setImageResource(R.drawable.dp_holder)
+                        }
+
+
                         Picasso.get().load(data?.userProfilePhoto).placeholder(R.drawable.dp_holder).error(
-                            R.drawable.dp_holder).into(userProfile!!)
+                            R.drawable.dp_holder
+                        ).into(userProfile!!)
 
                         userName?.text=data?.username
 
@@ -297,7 +319,15 @@ class NoteFragment : Fragment() {
                 requireActivity().finish()
 
             }
+
+            deleteAccount?.setOnClickListener {
+                val openUrlIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
+                startActivity(openUrlIntent)
+
+            }
+
         }
+
 
         search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -371,7 +401,7 @@ class NoteFragment : Fragment() {
         swipeToGesture(rvNote)
 
         FirebaseFirestore.getInstance().collection("notes").document(FirebaseAuth.getInstance().uid.toString())
-            .collection("myNotes").addSnapshotListener { value, error ->
+            .collection("myNotes").addSnapshotListener { value, _ ->
 
                 if (value!!.isEmpty) {
 
@@ -392,9 +422,9 @@ class NoteFragment : Fragment() {
 
                 var actionBtnTapped = false
 
-                val position=viewHolder.position
+                val position = viewHolder.absoluteAdapterPosition
 
-                val previousId=firebaseAdapter.snapshots.getSnapshot(position).id
+                firebaseAdapter.snapshots.getSnapshot(position).id
 
                 val note=firebaseAdapter.getItem(position)
 
@@ -525,6 +555,7 @@ class NoteFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onStart() {
         super.onStart()
 
