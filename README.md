@@ -76,3 +76,7 @@ plugins {
 
 ```
 
+🔗 Play Store Link
+
+ Download: [Play Store'dan indir]( https://play.google.com/store/apps/details?id=com.barisgungorr.notesapp).
+
