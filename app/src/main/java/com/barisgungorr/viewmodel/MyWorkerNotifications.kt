@@ -15,7 +15,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.barisgungorr.view.Activity.MainActivity
+import com.barisgungorr.view.activity.MainActivity
 import com.barisgungorr.notesapp.R
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random

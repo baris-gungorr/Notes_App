@@ -17,11 +17,11 @@
         android:theme="@style/Theme.NotesApp"
         tools:targetApi="31">
         <activity
-            android:name="com.barisgungorr.view.Activity.NoteActivity"
+            android:name="com.barisgungorr.view.activity.NoteActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name="com.barisgungorr.view.Activity.MainActivity"
+            android:name="com.barisgungorr.view.activity.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.NotesApp">

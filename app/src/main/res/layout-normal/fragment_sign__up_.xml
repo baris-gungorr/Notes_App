@@ -11,7 +11,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.barisgungorr.view.Fragment.Sign_Up_Fragment">
+    tools:context="com.barisgungorr.view.fragment.SignUpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.barisgungorr.view.Fragment.NoteFragment"
+        android:name="com.barisgungorr.view.fragment.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/saveFragment"
-        android:name="com.barisgungorr.view.Fragment.SaveFragment"
+        android:name="com.barisgungorr.view.fragment.SaveFragment"
         android:label="fragment_save"
         tools:layout="@layout/fragment_save" >
         <action

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splash_Fragment"
-        android:name="com.barisgungorr.view.Fragment.Splash_Fragment"
+        android:name="com.barisgungorr.view.fragment.SplashFragment"
         android:label="fragment_splash_"
         tools:layout="@layout/fragment_splash_" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/forget_Fragment"
-        android:name="com.barisgungorr.view.Fragment.Forget_Fragment"
+        android:name="com.barisgungorr.view.fragment.Forget_Fragment"
         tools:layout="@layout/fragment_forget_"
         android:label="Forget_Fragment" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/sign_in_Fragment"
-        android:name="com.barisgungorr.view.Fragment.Sign_in_Fragment"
+        android:name="com.barisgungorr.view.fragment.SignInFragment"
        tools:layout="@layout/fragment_sign_in_"
         android:label="Sign_in_Fragment" >
         <action
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/sign_Up_Fragment"
-        android:name="com.barisgungorr.view.Fragment.Sign_Up_Fragment"
+        android:name="com.barisgungorr.view.fragment.SignUpFragment"
        tools:layout="@layout/fragment_sign__up_"
         android:label="Sign_Up_Fragment" >
         <action
