@@ -33,6 +33,7 @@ import com.barisgungorr.data.GridModel
 import com.barisgungorr.data.InformationModel
 import com.barisgungorr.data.NoteModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.notesapp.databinding.FragmentNoteBinding
 import com.barisgungorr.view.activity.MainActivity
 import com.barisgungorr.view.adapter.NoteAdapter
 import com.barisgungorr.view.utils.SwipeGesture
@@ -60,6 +61,8 @@ import kotlinx.coroutines.launch
 
 
 class NoteFragment : Fragment() {
+    private lateinit var binding: FragmentNoteBinding
+
     lateinit var addNoteFab: LinearLayout
 
     lateinit var noteUser: ImageView
@@ -91,8 +94,12 @@ class NoteFragment : Fragment() {
             1, StaggeredGridLayoutManager.VERTICAL
         )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         exitTransition = MaterialElevationScale(false).apply {
@@ -105,10 +112,13 @@ class NoteFragment : Fragment() {
 
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
+        binding = FragmentNoteBinding.inflate(inflater, container, false)
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -137,8 +147,9 @@ class NoteFragment : Fragment() {
 
         setUpFirebaseAdapter()
 
-        return view
+        binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -263,7 +274,7 @@ class NoteFragment : Fragment() {
             val userName: TextView? = dialog.findViewById(R.id.user_name)
             val userMail: TextView? = dialog.findViewById(R.id.user_mail)
             val userLogout: Button? = dialog.findViewById(R.id.user_logout)
-            val deleteAccount: Button? = dialog.findViewById(R.id.delete_account)
+           // val deleteAccount: Button? = dialog.findViewById(R.id.delete_account)
 
 
 
@@ -325,13 +336,15 @@ class NoteFragment : Fragment() {
                 requireActivity().finish()
 
             }
-
-            deleteAccount?.setOnClickListener {
+/*
+    deleteAccount?.setOnClickListener {
                 val openUrlIntent =
                     Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
                 startActivity(openUrlIntent)
 
             }
+ */
+
 
         }
 

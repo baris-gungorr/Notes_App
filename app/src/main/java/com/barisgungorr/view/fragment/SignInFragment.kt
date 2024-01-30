@@ -14,7 +14,6 @@ import com.barisgungorr.notesapp.databinding.FragmentSignInBinding
 import com.barisgungorr.view.activity.NoteActivity
 import com.google.firebase.auth.FirebaseAuth
 
-
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var firebaseAuth: FirebaseAuth

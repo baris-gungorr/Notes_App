@@ -20,6 +20,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.barisgungorr.data.Connection.ConnectivityObserver
 import com.barisgungorr.data.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.notesapp.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -30,7 +31,7 @@ import kotlinx.coroutines.flow.onEach
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityMainBinding
     private lateinit var mainLayout: NestedScrollView
     private lateinit var noInternet: LottieAnimationView
     private lateinit var connectivityObserver: ConnectivityObserver
@@ -38,7 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 

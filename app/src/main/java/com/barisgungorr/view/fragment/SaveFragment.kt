@@ -22,6 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.barisgungorr.data.NoteModel
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.notesapp.databinding.FragmentSaveBinding
 import com.barisgungorr.view.utils.hideKeyboard
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -42,6 +43,9 @@ import java.util.Date
 
 
 class SaveFragment : Fragment() {
+
+    private lateinit var binding: FragmentSaveBinding
+
     lateinit var noteContentFragmentParent: RelativeLayout
     lateinit var toolbarFragmentNoteContent: RelativeLayout
     private lateinit var navController: NavController
@@ -78,6 +82,9 @@ class SaveFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
 

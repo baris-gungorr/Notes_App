@@ -16,6 +16,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.barisgungorr.data.Connection.ConnectivityObserver
 import com.barisgungorr.data.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
+import com.barisgungorr.notesapp.databinding.ActivityMainBinding
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -25,6 +26,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class NoteActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     private lateinit var parentLayout: ConstraintLayout
     private lateinit var mainLayout: FrameLayout
@@ -33,7 +35,9 @@ class NoteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_note)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
 
         parentLayout = findViewById(R.id.parent_layout)

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="25dp"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="?attr/colorOnPrimary">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -54,12 +54,13 @@
                     app:cardCornerRadius="100dp"
                     android:layout_marginTop="10dp">
 
-
-                    <androidx.appcompat.widget.AppCompatImageView
+                    <ImageView
                         android:id="@+id/user_profile"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop">
+
+                    </ImageView>
 
                 </androidx.cardview.widget.CardView>
 
@@ -97,23 +98,6 @@
                     android:textStyle="bold">
 
                 </android.widget.Button>
-
-                <Button
-                    android:id="@+id/delete_account"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                   android:backgroundTint="@color/black"
-                    android:textSize="14dp"
-                    android:textColor="@color/white"
-                    android:text="HESABIMI SİL"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/josefinsans_medium">
-
-                </Button>
-
-
 
             </LinearLayout>
 
