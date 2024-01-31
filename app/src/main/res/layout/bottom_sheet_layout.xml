@@ -31,7 +31,7 @@
             android:drawableStart="@drawable/ic_round_color_lens_24"
             android:drawablePadding="10dp"
             android:fontFamily="@font/google_sans_regular"
-            android:text="@string/renk_sec"
+            android:text="@string/bottom_sheet_choose_color"
             android:textColor="?attr/colorOnSecondary"
             android:textSize="25sp"
             android:id="@+id/addColor"

@@ -43,8 +43,6 @@
         app:lottie_rawRes="@raw/no_internet"
         android:visibility="gone">
 
-
     </com.airbnb.lottie.LottieAnimationView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

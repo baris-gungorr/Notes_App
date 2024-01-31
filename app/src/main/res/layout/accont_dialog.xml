@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="25dp"
-            android:backgroundTint="?attr/colorOnPrimary">
+            android:backgroundTint="@color/card_purple">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
                 </ImageView>
 
                 <TextView
-                    android:text="@string/notlarim"
+                    android:text="@string/account_dialog_my_notes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/colorOnSecondary"
@@ -87,7 +87,7 @@
 
                 <android.widget.Button
                     android:id="@+id/user_logout"
-                    android:text="@string/cikis_yap"
+                    android:text="@string/account_dialog_log_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
