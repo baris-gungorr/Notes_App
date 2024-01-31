@@ -15,6 +15,19 @@
     <string name="fragment_forgot_reset_request_text">Send reset request</string>
     <string name="fragment_forgot_go_back_text">Go back</string>
 
+    //fragment note
+    <string name="fragment_note_title">My Notes</string>
+    <string name="fragment_note_search_text">Search</string>
+    <string name="fragment_note_add_text">Add Note</string>
+
+    //fragment save
+    <string name="fragment_save_regulation_text">Regulation</string>
+    <string name="fragment_save_title">Title</string>
+    <string name="fragment_save_notes">Notes...</string>
+
+
+
+
 
 
     <string name="sample_text"> </string>
@@ -25,10 +38,6 @@
     <string name="ifremi_unuttum">Şifremi Unuttum</string>
     <string name="kayit_ol">KAYIT OL</string>
     <string name="veya">Veya</string>
-
-
-
-
     <string name="giri_ekranina_don">Giriş ekranına dön</string>
-    <string name="notlari_m">Notlarım</string>
+
 </resources>

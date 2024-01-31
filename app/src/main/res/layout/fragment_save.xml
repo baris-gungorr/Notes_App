@@ -1,153 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/noteContentFragmentParent"
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:id="@+id/noteContentFragmentParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.barisgungorr.view.Fragment.SaveFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:layout_editor_absoluteY="25dp">
 
 
-    <RelativeLayout
-        android:id="@+id/toolbarFragmentNoteContent"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/last_edited"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:background="@drawable/date_rounded"
-            android:ellipsize="end"
-            android:fontFamily="@font/google_sans_regular"
-            android:paddingStart="13dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="13dp"
-            android:paddingBottom="5dp"
-            android:text="Düzenleme"
-            android:textAlignment="center"
-            android:textColor="?attr/colorOnSecondary"
-            android:textSize="14sp"
-            android:textStyle="bold">
-
-
-        </com.google.android.material.textview.MaterialTextView>
-
-
-        <ImageView
-            android:id="@+id/save_note"
-            android:layout_width="41dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="7dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="3dp"
-            android:src="@drawable/ic_round_save_24">
-
-        </ImageView>
-
-
-    </RelativeLayout>
-
-    <FrameLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_bar"
-        android:layout_below="@+id/toolbarFragmentNoteContent">
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="47dp">
 
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/scroll_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:orientation="vertical">
 
-            <LinearLayout
+
+            <com.yahiaangelo.markdownedittext.MarkdownEditText
+                android:id="@+id/et_noteContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/fragment_save_notes"
+                android:textSize="20sp"
+                android:gravity="top"
+                app:layout_constraintBottom_toTopOf="@+id/style_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_title">
 
-                <EditText
-                    android:id="@+id/et_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@null"
-                    android:fontFamily="@font/google_sans_medium"
-                    android:hint="Başlık"
-                    android:importantForAutofill="no"
-                    android:inputType="none"
-                    android:textSize="22sp">
+            </com.yahiaangelo.markdownedittext.MarkdownEditText>
 
-                </EditText>
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/google_sans_medium"
+                android:gravity="center_horizontal"
+                android:hint="@string/fragment_save_title"
+                android:importantForAutofill="no"
+                android:inputType="none"
+                android:textColor="@color/card_purple"
+                android:textSize="42sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/last_edited">
 
-                <com.yahiaangelo.markdownedittext.MarkdownEditText
-                    android:id="@+id/et_noteContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22sp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="22dp"
-                    android:background="@null"
-                    android:hint="Not"
-                    android:padding="10dp"
-                    android:textSize="16sp">
+            </EditText>
 
-                </com.yahiaangelo.markdownedittext.MarkdownEditText>
+            <com.yahiaangelo.markdownedittext.MarkdownStylesBar
+                android:id="@+id/style_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="8dp"
+                android:clipToPadding="false"
+                android:elevation="5dp"
+                android:padding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent">
+
+            </com.yahiaangelo.markdownedittext.MarkdownStylesBar>
+
+            <ImageView
+                android:id="@+id/save_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="3dp"
+                android:src="@drawable/ic_round_save_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/last_edited"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ImageView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_color_pick"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="6dp"
+                android:src="@drawable/ic_round_color_lens_24"
+                app:backgroundTint="@color/purple_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/style_bar">
+
+            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/last_edited"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="48dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/google_sans_regular"
+                android:paddingStart="13dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="13dp"
+                android:paddingBottom="5dp"
+                android:text="@string/fragment_save_regulation_text"
+                android:textAlignment="center"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RelativeOverlap">
 
 
-            </LinearLayout>
+            </com.google.android.material.textview.MaterialTextView>
 
 
-        </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/fab_color_pick"
-            android:layout_margin="15dp"
-            android:layout_gravity="bottom|right"
-            android:src="@drawable/ic_round_color_lens_24"
-            app:backgroundTint="@color/purple_200">
-
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
-    <LinearLayout
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <com.yahiaangelo.markdownedittext.MarkdownStylesBar
-            android:id="@+id/style_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:padding="0dp"
-            android:clipToPadding="false">
-
-        </com.yahiaangelo.markdownedittext.MarkdownStylesBar>
-
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

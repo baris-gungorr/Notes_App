@@ -18,10 +18,8 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@color/white"
@@ -29,50 +27,48 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/app_title"
-                    android:fontFamily="@font/google_sans_bold"
-                    android:text="@string/notlari_m"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="2dp">
+                    android:fontFamily="@font/google_sans_bold"
+                    android:text="@string/fragment_note_title"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                 </com.google.android.material.textview.MaterialTextView>
 
                 <ImageView
                     android:id="@+id/note_user"
-                    android:src="@drawable/notesss"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:padding="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/app_title"
-                    app:layout_constraintTop_toTopOf="@+id/app_title"
-                    app:layout_constraintBottom_toBottomOf="@+id/app_title"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    android:layout_marginEnd="16dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintBottom_toBottomOf="@+id/app_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/app_title">
 
                 </ImageView>
 
                 <ImageView
                     android:id="@+id/note_grid"
-                    android:src="@drawable/ic_round_grid_view_24"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    app:layout_constraintEnd_toStartOf="@+id/note_user"
-                    app:layout_constraintStart_toEndOf="@+id/app_title"
-                    app:layout_constraintTop_toTopOf="@+id/app_title"
-                    app:layout_constraintBottom_toBottomOf="@+id/app_title"
-                    app:layout_constraintHorizontal_bias="0.9"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="16dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
-                    android:focusable="true">
+                    android:focusable="true"
+                    android:src="@drawable/ic_round_grid_view_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/app_title"
+                    app:layout_constraintEnd_toStartOf="@+id/note_user"
+                    app:layout_constraintTop_toTopOf="@+id/app_title">
 
                 </ImageView>
 
@@ -88,38 +84,33 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginEnd="15dp">
 
-
                     <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
                         android:id="@+id/search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:background="@drawable/rounded_search"
                         android:drawableStart="@drawable/ic_round_search_24"
                         android:drawablePadding="5dp"
+                        android:hint="@string/fragment_note_search_text"
                         android:imeOptions="actionSearch"
-                        android:hint="Arama"
+                        android:importantForAutofill="no"
+                        android:inputType="textFilter"
                         android:paddingStart="18dp"
                         android:paddingTop="4dp"
                         android:paddingEnd="18dp"
                         android:paddingBottom="5dp"
-                        android:textSize="16sp"
-                        android:importantForAutofill="no"
-                        android:inputType="textFilter"
-                        android:layout_weight="3">
+                        android:textSize="16sp">
 
                     </EditText>
 
                 </LinearLayout>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </com.google.android.material.appbar.MaterialToolbar>
 
-
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_note"
@@ -165,7 +156,7 @@
         android:animateLayoutChanges="true"
         android:orientation="horizontal"
         android:clipToPadding="false"
-        android:background="@drawable/fab_btn_corner"
+        android:background="@drawable/logout_bg"
         android:layout_margin="16dp">
 
         <ImageView
@@ -186,7 +177,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/chatFabText"
             android:fontFamily="@font/google_sans_regular"
-            android:text="Not Ekle"
+            android:text="@string/fragment_note_add_text"
             android:textColor="?attr/colorOnPrimary"
             android:textStyle="bold"
             android:layout_marginEnd="20dp"
@@ -195,7 +186,6 @@
             android:gravity="center">
 
         </TextView>
-
 
     </LinearLayout>
 
