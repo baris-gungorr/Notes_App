@@ -23,8 +23,10 @@
     //fragment save
     <string name="fragment_save_regulation_text">Regulation</string>
     <string name="fragment_save_title">Title</string>
-    <string name="fragment_save_notes">Notes...</string>
+    <string name="fragment_save_notes">Notes..</string>
 
+    //fragment sign up
+    <string name="fragment_sign_up_title">Sign Up</string>
 
 
 
