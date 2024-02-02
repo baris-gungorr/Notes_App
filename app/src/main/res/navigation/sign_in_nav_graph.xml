@@ -10,7 +10,7 @@
         android:id="@+id/splash_Fragment"
         android:name="com.barisgungorr.view.fragment.SplashFragment"
         android:label="fragment_splash_"
-        tools:layout="@layout/fragment_splash_" >
+        tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splash_Fragment_to_sign_in_Fragment"
             app:destination="@id/sign_in_Fragment"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/sign_Up_Fragment"
         android:name="com.barisgungorr.view.fragment.SignUpFragment"
-       tools:layout="@layout/fragment_sign__up_"
+       tools:layout="@layout/fragment_sign_up"
         android:label="Sign_Up_Fragment" >
         <action
             android:id="@+id/action_sign_Up_Fragment_to_sign_in_Fragment"

@@ -27,6 +27,15 @@
 
     //fragment sign up
     <string name="fragment_sign_up_title">Sign Up</string>
+    <string name="fragment_sign_up_buttonText">Sign Up</string>
+    <string name="fragment_sign_up_already_text">Are you already registered?</string>
+    <string name="fragment_sign_up_name_text">Name</string>
+    <string name="fragment_sign_up_email_text">E-Mail</string>
+    <string name="fragment_sign_up_password_text">Password</string>
+    <string name="fragment_sign_up_rePassword_text">Re-Password</string>
+
+
+
 
 
 
