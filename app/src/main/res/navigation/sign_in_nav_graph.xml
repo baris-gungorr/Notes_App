@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/forget_Fragment"
-        android:name="com.barisgungorr.view.fragment.Forget_Fragment"
+        android:name="com.barisgungorr.view.fragment.ForgetFragment"
         tools:layout="@layout/fragment_forget_"
         android:label="Forget_Fragment" >
         <action

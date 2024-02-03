@@ -13,7 +13,7 @@ import com.barisgungorr.notesapp.databinding.FragmentForgetBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
-class Forget_Fragment : Fragment() {
+class ForgetFragment : Fragment() {
 
     private lateinit var binding: FragmentForgetBinding
 
