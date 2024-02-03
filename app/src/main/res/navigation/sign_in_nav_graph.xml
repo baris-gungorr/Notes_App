@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/sign_in_Fragment"
         android:name="com.barisgungorr.view.fragment.SignInFragment"
-       tools:layout="@layout/fragment_sign_in_"
+       tools:layout="@layout/fragment_sign_in"
         android:label="Sign_in_Fragment" >
         <action
             android:id="@+id/action_sign_in_Fragment_to_forget_Fragment"

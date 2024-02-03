@@ -34,6 +34,13 @@
     <string name="fragment_sign_up_password_text">Password</string>
     <string name="fragment_sign_up_rePassword_text">Re-Password</string>
 
+    //fragment sign in
+    <string name="fragment_sign_in_btn_text">Sign In</string>
+    <string name="fragment_sign_in_terms_conditions">Terms and Conditions</string>
+    <string name="fragment_sign_in_login_with_google">Login with Google</string>
+
+
+
 
 
 

@@ -25,7 +25,7 @@ class SignInFragment : Fragment() {
     ): View? {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        return inflater.inflate(R.layout.fragment_sign_in_, container, false)
+        return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

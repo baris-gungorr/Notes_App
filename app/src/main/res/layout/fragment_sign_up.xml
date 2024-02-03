@@ -119,7 +119,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/fragment_sign_up_password_text"
-            android:inputType="numberPassword">
+            android:inputType="numberPassword"
+            android:autofillHints="password">
 
         </EditText>
 
