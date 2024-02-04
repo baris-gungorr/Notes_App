@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.notesapp.R
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
-abstract class SwipeGesture(context: Context): ItemTouchHelper.SimpleCallback(
+abstract class SwipeGesture(context: Context) : ItemTouchHelper.SimpleCallback(
     0,
     ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
 ) {
-private val deleteColor = ContextCompat.getColor(context, R.color.deleteColor)
-    private val deleIcon = R.drawable.ic_round_delete_24
-
+    private val deleteColor = ContextCompat.getColor(context, R.color.deleteColor)
+    private val deleteIcon = R.drawable.ic_round_delete_24
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -43,15 +42,12 @@ private val deleteColor = ContextCompat.getColor(context, R.color.deleteColor)
             isCurrentlyActive
         )
             .addSwipeLeftBackgroundColor(deleteColor)
-            .addSwipeLeftActionIcon(deleIcon)
+            .addSwipeLeftActionIcon(deleteIcon)
             .addSwipeRightBackgroundColor(deleteColor)
-            .addSwipeRightActionIcon(deleIcon)
+            .addSwipeRightActionIcon(deleteIcon)
             .create()
             .decorate()
 
-
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
-
-
 }
