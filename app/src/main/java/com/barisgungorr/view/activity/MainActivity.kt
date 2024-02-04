@@ -8,19 +8,19 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.barisgungorr.viewmodel.MyWorkerNotifications
-import com.airbnb.lottie.LottieAnimationView
 import com.barisgungorr.data.Connection.ConnectivityObserver
 import com.barisgungorr.data.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.ActivityMainBinding
+import com.barisgungorr.view.utils.Constants
+import com.barisgungorr.viewmodel.MyWorkerNotifications
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -32,20 +32,21 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var mainLayout: NestedScrollView
-    private lateinit var noInternet: LottieAnimationView
     private lateinit var connectivityObserver: ConnectivityObserver
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
+        setupWorkManager()
+        setupNetworkObserver()
+        checkUser()
+    }
 
+    private fun setupWorkManager() {
         val call = PeriodicWorkRequestBuilder<MyWorkerNotifications>(1440, TimeUnit.MINUTES)
             .setInitialDelay(1440, TimeUnit.SECONDS)
             .build()
@@ -55,126 +56,77 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(call.id)
             .observe(this) {
                 val current = it.state.name
-                Log.e("Arkaplan işlem durumu", current)
+                Log.e(R.string.activity_main_process_status.toString(), current)
             }
+    }
 
-        mainLayout = findViewById(R.id.main_layout)
-
-        noInternet = findViewById(R.id.no_internet)
+    private fun setupNetworkObserver() {
         connectivityObserver = NetworkConnectivityObserver(applicationContext)
 
-        if (isNetworkAvailable(this)) {
+        connectivityObserver.observe().onEach { status ->
+            when (status) {
+                ConnectivityObserver.Status.Available -> {
 
-            mainLayout.visibility = View.VISIBLE
+                    binding.noInternet.visibility = View.GONE
+                }
 
-            noInternet.visibility = View.GONE
-
-        } else {
-
-            mainLayout.visibility = View.GONE
-
-            noInternet.visibility = View.VISIBLE
-
-        }
-
-        connectivityObserver.observe().onEach {
-
-            if (it == ConnectivityObserver.Status.Available) {
-
-                mainLayout.visibility = View.VISIBLE
-
-                noInternet.visibility = View.GONE
-            } else {
-
-                mainLayout.visibility = View.GONE
-
-                noInternet.visibility = View.VISIBLE
-
+                else -> {
+                    binding.noInternet.visibility = View.VISIBLE
+                }
             }
-
         }.launchIn(lifecycleScope)
-
-
-        checkUser()
-
     }
 
     private fun checkUser() {
-
         val firebaseUser = FirebaseAuth.getInstance().currentUser
 
-
         if (firebaseUser != null && firebaseUser.isEmailVerified) {
-
             startActivity(Intent(this, NoteActivity::class.java))
-
             overridePendingTransition(0, 0)
-
             finish()
         } else {
-
-            try {
-                val googleSignInOptions =
-                    GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
-                        .requestEmail()
-                        .build()
-
-                val googleSignInClient: GoogleSignInClient =
-                    GoogleSignIn.getClient(this, googleSignInOptions)
-
-                Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
-
-            } catch (_: Exception) {
-
+            if (isNetworkAvailable(this)) {
+                signOut()
+            } else {
+                Toast.makeText(this, R.string.activity_main_check_internet, Toast.LENGTH_SHORT)
+                    .show()
             }
-            FirebaseAuth.getInstance().signOut()
         }
+    }
+
+    private fun signOut() {
+        try {
+            val googleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(Constants.CLIENT_ID)
+                    .requestEmail()
+                    .build()
+
+            val googleSignInClient: GoogleSignInClient =
+                GoogleSignIn.getClient(this, googleSignInOptions)
+
+            Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
+        } catch (_: Exception) {
+        }
+        FirebaseAuth.getInstance().signOut()
     }
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager =
             context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val capabilities =
                 connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                when {
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                        return true
-                    }
-
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                        return true
-                    }
-
-                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                        return true
-                    }
-                }
-            }
+            capabilities?.run {
+                hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+            } ?: false
         } else {
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
-                return true
-            }
+            val network = connectivityManager.activeNetwork ?: return false
+            val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         }
-        return false
     }
-
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-
-        if (noInternet.isVisible) {
-
-            finishAffinity()
-
-        }
-        super.onBackPressed()
-    }
-
 }
-
-
-

@@ -52,7 +52,10 @@
     <string name="no_internet_text">No internet !</string>
     <string name="no_internet_connection_text">Check your internet connection</string>
 
-
+    //Activity Main
+    <string name="activity_main_no_internet">No internet !</string>
+    <string name="activity_main_process_status">Background process status</string>
+    <string name="activity_main_check_internet">Check your internet connection</string>
 
 
 </resources>
