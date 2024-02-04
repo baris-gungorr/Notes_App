@@ -1,12 +1,14 @@
 package com.barisgungorr.view.fragment
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentForgetBinding
@@ -16,64 +18,64 @@ import com.google.firebase.auth.FirebaseAuth
 class ForgetFragment : Fragment() {
 
     private lateinit var binding: FragmentForgetBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_forget_, container, false)
+        binding = FragmentForgetBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        binding = FragmentForgetBinding.bind(view)
+        initVariables()
+        initViews()
+    }
 
-        binding.gobacktologin.setOnClickListener {
+    private fun initVariables() {
+        auth = FirebaseAuth.getInstance()
+        navController = Navigation.findNavController(requireView())
+    }
 
-            Navigation.findNavController(view)
-                .navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
-
+    private fun initViews() {
+        binding.tvGoBack.setOnClickListener {
+            navController.navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
         }
 
-        binding.passwordRecover.setOnClickListener {
-
+        binding.btnResetPassword.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
-
-            val mail: String = binding.forgotPasswordText.text.toString().trim()
-            if (mail.isEmpty()) {
-                Toast.makeText(requireContext(), "Mail adresinizi girin", Toast.LENGTH_LONG).show()
-
+            val mail: String = binding.emailText.text.toString().trim()
+            if (mail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.fragment_forgot_enter_email_address),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                FirebaseAuth.getInstance().sendPasswordResetEmail(mail)
+                auth.sendPasswordResetEmail(mail)
                     .addOnCompleteListener { task ->
-
                         if (task.isSuccessful) {
                             Toast.makeText(
                                 requireContext(),
-                                "Sıfırlama maili gönderildi !",
-                                Toast.LENGTH_LONG
+                                getString(R.string.fragment_forgot_reset_mail_sent),
+                                Toast.LENGTH_SHORT
                             ).show()
-
-                            Navigation.findNavController(view)
-                                .navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
-
-                            binding.progressBar.visibility = View.INVISIBLE
-
+                            navController.navigate(R.id.action_forget_Fragment_to_sign_in_Fragment)
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                "Geçersiz E-mail adresi", Toast.LENGTH_LONG
+                                getString(R.string.fragment_forgot_invalid_email_address),
+                                Toast.LENGTH_SHORT
                             ).show()
-
-                            binding.progressBar.visibility = View.INVISIBLE
                         }
+                        binding.progressBar.visibility = View.INVISIBLE
                     }
             }
         }
     }
 }
-
 

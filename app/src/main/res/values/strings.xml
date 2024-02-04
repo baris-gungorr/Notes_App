@@ -8,11 +8,16 @@
     //bottom sheet
     <string name="bottom_sheet_choose_color">Choose color</string>
 
-    //forget password
+    //forget fragment
     <string name="fragment_forgot_reset_password">Forgot Password</string>
     <string name="fragment_forgot_register_email">Enter your registered e-mail address</string>
     <string name="fragment_forgot_reset_request_text">Send reset request</string>
     <string name="fragment_forgot_go_back_text">Go back</string>
+    <string name="fragment_forgot_enter_email_address">Enter your e-mail address</string>
+    <string name="fragment_forgot_reset_mail_sent">Reset mail sent</string>
+    <string name="fragment_forgot_invalid_email_address">invalid email address</string>
+
+
 
     //fragment note
     <string name="fragment_note_title">My Notes</string>
