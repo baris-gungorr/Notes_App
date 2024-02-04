@@ -17,6 +17,8 @@ import com.barisgungorr.data.Connection.ConnectivityObserver
 import com.barisgungorr.data.Connection.NetworkConnectivityObserver
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.ActivityMainBinding
+import com.barisgungorr.notesapp.databinding.ActivityNoteBinding
+import com.barisgungorr.view.utils.Constants
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -26,104 +28,54 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class NoteActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-
-    private lateinit var parentLayout: ConstraintLayout
-    private lateinit var mainLayout: FrameLayout
-    private lateinit var noInternet: LottieAnimationView
+    private lateinit var binding: ActivityNoteBinding
     private lateinit var connectivityObserver: ConnectivityObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-
-
-        parentLayout = findViewById(R.id.parent_layout)
-
-        mainLayout = findViewById(R.id.main_layout)
-
-        noInternet = findViewById(R.id.no_internet)
-
+        binding = ActivityNoteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         connectivityObserver = NetworkConnectivityObserver(applicationContext)
 
-        if (isNetworkAvailable(this)) {
-
-            mainLayout.visibility = View.VISIBLE
-
-            noInternet.visibility = View.GONE
-
-        } else {
-
-
-            mainLayout.visibility = View.GONE
-
-            noInternet.visibility = View.VISIBLE
-
-        }
-
+        updateUI(isNetworkAvailable(this))
 
         connectivityObserver.observe().onEach {
-
-            if (it == ConnectivityObserver.Status.Available) {
-
-                mainLayout.visibility = View.VISIBLE
-
-                noInternet.visibility = View.GONE
-
-            } else {
-
-
-                mainLayout.visibility = View.GONE
-
-                noInternet.visibility = View.VISIBLE
-
-
-            }
-
-
+            updateUI(it == ConnectivityObserver.Status.Available)
         }.launchIn(lifecycleScope)
 
-
-
         checkUser()
-
-
     }
 
+    private fun updateUI(isNetworkAvailable: Boolean) {
+        binding.mainLayout.visibility = if (isNetworkAvailable) View.VISIBLE else View.GONE
+        binding.noInternet.visibility = if (isNetworkAvailable) View.GONE else View.VISIBLE
+    }
 
     private fun checkUser() {
-
         val firebaseUser = FirebaseAuth.getInstance().currentUser
 
-
-        if (firebaseUser != null && firebaseUser.isEmailVerified) {
-
-        } else {
-
-            try {
-                val googleSignInOptions =
-                    GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        .requestIdToken("AIzaSyCoIZB0qQ3BbkYWw7KRL-A_kVboFKwciB4")
-                        .requestEmail()
-                        .build()
-
-                val googleSignInClient: GoogleSignInClient =
-                    GoogleSignIn.getClient(this, googleSignInOptions)
-
-                Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
-
-            } catch (e: Exception) {
-
-                Log.e("Hata", "Hatalı")
-            }
-
-            FirebaseAuth.getInstance().signOut()
-
+        if (firebaseUser == null || !firebaseUser.isEmailVerified) {
+            signOut()
         }
+    }
 
+    private fun signOut() {
+        try {
+            val googleSignInOptions =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(Constants.CLIENT_ID)
+                    .requestEmail()
+                    .build()
+
+            val googleSignInClient: GoogleSignInClient =
+                GoogleSignIn.getClient(this, googleSignInOptions)
+
+            Auth.GoogleSignInApi.signOut(googleSignInClient.asGoogleApiClient())
+        } catch (e: Exception) {
+            Log.e("ERROR", "Error signing out: ${e.message}")
+        }
+        FirebaseAuth.getInstance().signOut()
     }
 
     private fun isNetworkAvailable(context: Context?): Boolean {
@@ -138,11 +90,9 @@ class NoteActivity : AppCompatActivity() {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
                         return true
                     }
-
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                         return true
                     }
-
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
                         return true
                     }
@@ -157,15 +107,10 @@ class NoteActivity : AppCompatActivity() {
         return false
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-
-        if (noInternet.isVisible) {
-
+    override fun onSupportNavigateUp(): Boolean {
+        if (binding.noInternet.isVisible) {
             finishAffinity()
         }
-
-        super.onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }
-
