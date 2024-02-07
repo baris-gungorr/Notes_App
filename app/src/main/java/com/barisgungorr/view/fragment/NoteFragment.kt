@@ -62,34 +62,21 @@ import kotlinx.coroutines.launch
 
 class NoteFragment : Fragment() {
     private lateinit var binding: FragmentNoteBinding
-
-    lateinit var addNoteFab: LinearLayout
-
-    lateinit var noteUser: ImageView
-
+    private lateinit var addNoteFab: LinearLayout
+    private lateinit var noteUser: ImageView
     lateinit var search: EditText
-
-    lateinit var chatFabText: TextView
-
+    private lateinit var chatFabText: TextView
     private var backPressedTime: Long = 0
-
     private var backToast: Toast? = null
-
-    lateinit var rvNote: RecyclerView
-
+    private lateinit var rvNote: RecyclerView
     lateinit var noData: ImageView
-
     lateinit var options: FirestoreRecyclerOptions<NoteModel>
-
-
     lateinit var firebaseAdapter: NoteAdapter
-
-    lateinit var noteGrid: ImageView
-
+    private lateinit var noteGrid: ImageView
     private var isGrid = false
 
 
-    var layoutManager =
+    private var layoutManager =
         StaggeredGridLayoutManager(
             1, StaggeredGridLayoutManager.VERTICAL
         )
@@ -100,18 +87,13 @@ class NoteFragment : Fragment() {
 
 
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
         exitTransition = MaterialElevationScale(false).apply {
             duration = 350
         }
         enterTransition = MaterialElevationScale(true).apply {
             duration = 350
         }
-
-
     }
-
 
 
     override fun onCreateView(
@@ -191,36 +173,14 @@ class NoteFragment : Fragment() {
         FirebaseFirestore.getInstance().collection("notes")
             .document(FirebaseAuth.getInstance().uid.toString()).addSnapshotListener { value, _ ->
 
-            val data = value?.toObject(GridModel::class.java)
+                val data = value?.toObject(GridModel::class.java)
 
-            if (data?.isGrid != null) {
+                if (data?.isGrid != null) {
 
-                isGrid = data.isGrid
-            }
+                    isGrid = data.isGrid
+                }
 
-            if (isGrid) {
-
-                layoutManager =
-                    StaggeredGridLayoutManager(
-                        2, StaggeredGridLayoutManager.VERTICAL
-                    )
-
-                rvNote.layoutManager = layoutManager
-
-            } else {
-
-                layoutManager =
-                    StaggeredGridLayoutManager(
-                        1, StaggeredGridLayoutManager.VERTICAL
-                    )
-
-                rvNote.layoutManager = layoutManager
-
-            }
-
-            noteGrid.setOnClickListener {
-
-                if (!isGrid) {
+                if (isGrid) {
 
                     layoutManager =
                         StaggeredGridLayoutManager(
@@ -228,15 +188,6 @@ class NoteFragment : Fragment() {
                         )
 
                     rvNote.layoutManager = layoutManager
-
-                    val gridModel = GridModel()
-
-                    isGrid = true
-
-
-
-                    FirebaseFirestore.getInstance().collection("notes")
-                        .document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
 
                 } else {
 
@@ -247,18 +198,49 @@ class NoteFragment : Fragment() {
 
                     rvNote.layoutManager = layoutManager
 
-                    val gridModel = GridModel()
+                }
 
-                    isGrid = false
+                noteGrid.setOnClickListener {
+
+                    if (!isGrid) {
+
+                        layoutManager =
+                            StaggeredGridLayoutManager(
+                                2, StaggeredGridLayoutManager.VERTICAL
+                            )
+
+                        rvNote.layoutManager = layoutManager
+
+                        val gridModel = GridModel()
+
+                        isGrid = true
 
 
 
-                    FirebaseFirestore.getInstance().collection("notes")
-                        .document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
+                        FirebaseFirestore.getInstance().collection("notes")
+                            .document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
 
+                    } else {
+
+                        layoutManager =
+                            StaggeredGridLayoutManager(
+                                1, StaggeredGridLayoutManager.VERTICAL
+                            )
+
+                        rvNote.layoutManager = layoutManager
+
+                        val gridModel = GridModel()
+
+                        isGrid = false
+
+
+
+                        FirebaseFirestore.getInstance().collection("notes")
+                            .document(FirebaseAuth.getInstance().uid.toString()).set(gridModel)
+
+                    }
                 }
             }
-        }
 
         noteUser.setOnClickListener {
 
@@ -274,8 +256,7 @@ class NoteFragment : Fragment() {
             val userName: TextView? = dialog.findViewById(R.id.user_name)
             val userMail: TextView? = dialog.findViewById(R.id.user_mail)
             val userLogout: Button? = dialog.findViewById(R.id.user_logout)
-           // val deleteAccount: Button? = dialog.findViewById(R.id.delete_account)
-
+            // val deleteAccount: Button? = dialog.findViewById(R.id.delete_account)
 
 
             FirebaseDatabase.getInstance().reference.child("Users")
@@ -336,14 +317,14 @@ class NoteFragment : Fragment() {
                 requireActivity().finish()
 
             }
-/*
-    deleteAccount?.setOnClickListener {
-                val openUrlIntent =
-                    Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
-                startActivity(openUrlIntent)
 
-            }
- */
+                deleteAccount?.setOnClickListener {
+                            val openUrlIntent =
+                                Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
+                            startActivity(openUrlIntent)
+
+                        }
+
 
 
         }
@@ -625,14 +606,12 @@ class NoteFragment : Fragment() {
         super.onAttach(context)
 
         mContext = context
-
     }
 
     override fun onDetach() {
         super.onDetach()
 
         mContext = null
-
     }
 }
 

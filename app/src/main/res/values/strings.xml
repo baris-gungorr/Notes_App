@@ -62,5 +62,8 @@
     <string name="activity_main_process_status">Background process status</string>
     <string name="activity_main_check_internet">Check your internet connection</string>
 
+    //Splash Fragment
+    <string name="splash_fragment_term_conditions">Terms and conditions must be accepted</string>
+
 
 </resources>
