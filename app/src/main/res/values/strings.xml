@@ -37,6 +37,13 @@
     <string name="fragment_sign_up_email_text">E-Mail</string>
     <string name="fragment_sign_up_password_text">Password</string>
     <string name="fragment_sign_up_rePassword_text">Re-Password</string>
+    <string name="fragment_sign_up_fill_in_fields">Fill in the fields</string>
+    <string name="fragment_sign_up_password_length">Your password cannot be less than 6 digits or is not strong </string>
+    <string name="fragment_sign_up_password_not_match">Passwords do not match</string>
+    <string name="fragment_sign_up_invalid_email">Invalid or registered email address</string>
+    <string name="fragment_sign_up_incorrect_email">incorrect email format</string>
+    <string name="fragment_sign_up_network_error">Network Error</string>
+    <string name="fragment_sign_up_registration_error">User registration errorUser registration error</string>
 
     //fragment sign in
     <string name="fragment_sign_in_title">Sign In</string>
@@ -51,11 +58,6 @@
     <string name="fragment_sign_in_verify_email">Verify email address</string>
     <string name="fragment_sign_in_noSuchAccount">No such account exists</string>
     <string name="fragment_sign_in_fill_in_fields">Fill in the fields</string>
-
-
-
-
-
 
     //Note layout
     <string name="note_layout_date">gg-aa-yyyy</string>
