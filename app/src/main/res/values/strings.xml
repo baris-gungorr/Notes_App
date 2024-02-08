@@ -48,6 +48,14 @@
     <string name="fragment_sign_in_password_forgot">Forgot password</string>
     <string name="fragment_sign_in_or_text">Or</string>
     <string name="fragment_sign_in_signUpText">Sign up</string>
+    <string name="fragment_sign_in_verify_email">Verify email address</string>
+    <string name="fragment_sign_in_noSuchAccount">No such account exists</string>
+    <string name="fragment_sign_in_fill_in_fields">Fill in the fields</string>
+
+
+
+
+
 
     //Note layout
     <string name="note_layout_date">gg-aa-yyyy</string>
