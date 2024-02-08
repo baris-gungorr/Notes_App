@@ -64,6 +64,12 @@
 
     //Splash Fragment
     <string name="splash_fragment_term_conditions">Terms and conditions must be accepted</string>
+    <string name="splash_fragment_failed_registration">Failed registration</string>
+    <string name="splash_fragment_Successful_registration">Successful registration</string>
+    <string name="splash_fragment_user_notFound">User not found</string>
+    <string name="splash_fragment_sign_in_failed">Google Sign in failed</string>
+    <string name="splash_fragment_such_account">There is no such account </string>
+
 
 
 </resources>
