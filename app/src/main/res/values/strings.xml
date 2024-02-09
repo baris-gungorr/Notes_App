@@ -17,8 +17,6 @@
     <string name="fragment_forgot_reset_mail_sent">Reset mail sent</string>
     <string name="fragment_forgot_invalid_email_address">invalid email address</string>
 
-
-
     //fragment note
     <string name="fragment_note_title">My Notes</string>
     <string name="fragment_note_search_text">Search</string>
@@ -79,6 +77,11 @@
     <string name="splash_fragment_user_notFound">User not found</string>
     <string name="splash_fragment_sign_in_failed">Google Sign in failed</string>
     <string name="splash_fragment_such_account">There is no such account </string>
+
+    //SaveFragment
+    <string name="save_fragment_edited_on">Organised: %s</string>
+    <string name="save_fragment_write_something">"You must have written something</string>
+
 
 
 
