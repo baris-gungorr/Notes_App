@@ -1,5 +1,6 @@
 package com.barisgungorr.view.adapter
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,9 +20,11 @@ import io.noties.markwon.ext.tasklist.TaskListPlugin
 import org.commonmark.node.SoftLineBreak
 import java.text.SimpleDateFormat
 
-class NoteAdapter(options: FirestoreRecyclerOptions<NoteModel>) :
+class NoteAdapter(options: FirestoreRecyclerOptions<NoteModel>, context: Context) :
     FirestoreRecyclerAdapter<NoteModel, NoteAdapter.NoteViewHolder>(options) {
-    //TODO content - context
+
+    private val mContext: Context = context
+
     class NoteViewHolder(val binding: NoteLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         val markWon = Markwon.builder(binding.root.context)
             .usePlugin(StrikethroughPlugin.create())

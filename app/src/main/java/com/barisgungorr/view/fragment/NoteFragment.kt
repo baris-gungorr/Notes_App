@@ -1,62 +1,21 @@
 package com.barisgungorr.view.fragment
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
-import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.barisgungorr.data.GridModel
-import com.barisgungorr.data.InformationModel
 import com.barisgungorr.data.NoteModel
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentNoteBinding
-import com.barisgungorr.view.activity.MainActivity
 import com.barisgungorr.view.adapter.NoteAdapter
-import com.barisgungorr.view.utils.SwipeGesture
-import com.barisgungorr.view.utils.hideKeyboard
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialElevationScale
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class NoteFragment : Fragment() {
@@ -317,12 +276,12 @@ class NoteFragment : Fragment() {
 
             }
 
-                deleteAccount?.setOnClickListener {
-                            val openUrlIntent =
-                                Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
-                            startActivity(openUrlIntent)
+            deleteAccount?.setOnClickListener {
+                val openUrlIntent =
+                    Intent(Intent.ACTION_VIEW, Uri.parse("https://forms.gle/46DcNhLTbKsvEaWB8"))
+                startActivity(openUrlIntent)
 
-                        }
+            }
 
 
 
@@ -613,4 +572,3 @@ class NoteFragment : Fragment() {
         mContext = null
     }
 }
-

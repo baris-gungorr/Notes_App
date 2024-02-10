@@ -68,7 +68,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnResetPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
