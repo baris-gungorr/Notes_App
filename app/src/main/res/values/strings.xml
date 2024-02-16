@@ -44,7 +44,7 @@
     <string name="fragment_sign_up_registration_error">User registration errorUser registration error</string>
 
     //fragment sign in
-    <string name="fragment_sign_in_title">Sign In</string>
+    <string name="fragment_sign_in_title">SIGN IN</string>
     <string name="fragment_sign_in_btn_text">Sign In</string>
     <string name="fragment_sign_in_terms_conditions">Terms and Conditions</string>
     <string name="fragment_sign_in_login_with_google">Login with Google</string>

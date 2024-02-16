@@ -1,6 +1,10 @@
 package com.barisgungorr.view.fragment
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,21 +35,10 @@ class SaveFragment : Fragment() {
     private var data = NoteModel()
     private lateinit var navController: NavController
     private var color: Int = -1315861
+    private lateinit var colorPickerDialog: BottomSheetDialog
+    private val handler = Handler(Looper.getMainLooper())
+    private val bottomSheetParent = R.id.bottomSheetParent
 
-
-    private val colorPickerDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val animation = MaterialContainerTransform().apply {
-            drawingViewId = R.id.fragments
-            view?.let { ViewCompat.setBackground(it,
-                context?.let { it1 -> ContextCompat.getDrawable(it1, R.drawable.cloudy_notes_transparent) }) }
-            duration = 300L
-        }
-        sharedElementEnterTransition = animation
-        sharedElementReturnTransition = animation
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +53,7 @@ class SaveFragment : Fragment() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         navController = Navigation.findNavController(view)
+
         val colorPickerView = layoutInflater.inflate(R.layout.bottom_sheet_layout, null)
         val colorPicker = colorPickerView.findViewById<SpectrumPalette>(R.id.colorPicker)
         colorPicker.setSelectedColor(color)
@@ -67,6 +61,7 @@ class SaveFragment : Fragment() {
             color = value
             updateColors(color)
         }
+        colorPickerDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
         colorPickerDialog.setContentView(colorPickerView)
 
         binding.fabColorPick.setOnClickListener { colorPickerDialog.show() }
@@ -110,7 +105,9 @@ class SaveFragment : Fragment() {
                     .document(FirebaseAuth.getInstance().uid.toString())
                     .collection("myNotes").document().set(data)
                     .addOnSuccessListener {
-                        navController.navigate(R.id.action_saveFragment_to_noteFragment)
+                        handler.postDelayed({
+                            navController.navigate(R.id.action_saveFragment_to_noteFragment)
+                        }, 1000)
                     }
             } else {
                 updateNote()
@@ -130,6 +127,21 @@ class SaveFragment : Fragment() {
     }
 
     private fun setUpNote() {
+
+        if (!isNetworkAvailable()) {
+            Toast.makeText(activity, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val userId = FirebaseAuth.getInstance().uid
+        if (userId == null) {
+            Toast.makeText(activity, "Kullanıcı kimliği doğrulanmadı", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val noteId = arguments?.getString("noteId") ?: FirebaseFirestore.getInstance().collection("notes")
+            .document(userId)
+            .collection("myNotes").document().id
         if (arguments?.getString("noteId") == null) {
             binding.lastEdited.text = getString(
                 R.string.save_fragment_edited_on,
@@ -137,8 +149,8 @@ class SaveFragment : Fragment() {
             )
         } else {
             FirebaseFirestore.getInstance().collection("notes")
-                .document(FirebaseAuth.getInstance().uid.toString())
-                .collection("myNotes").document(arguments?.getString("noteId")!!)
+                .document(userId)
+                .collection("myNotes").document(noteId)
                 .addSnapshotListener { value, _ ->
                     val note = value?.toObject(NoteModel::class.java)
 
@@ -164,4 +176,13 @@ class SaveFragment : Fragment() {
         activity?.window?.navigationBarColor = color
         (colorPickerDialog.findViewById<CardView>(R.id.bottomSheetParent))?.setCardBackgroundColor(color)
     }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+
+
 }

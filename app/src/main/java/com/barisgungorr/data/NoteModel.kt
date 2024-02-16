@@ -8,6 +8,10 @@ data class NoteModel(
     var color:Int
 )
 {
+    fun toHashMap() {
+
+    }
+
     constructor():this(
      "",
         "",
