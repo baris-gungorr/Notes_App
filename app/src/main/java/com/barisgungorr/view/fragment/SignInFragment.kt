@@ -68,14 +68,21 @@ class SignInFragment : Fragment() {
 
         firebaseAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                checkMailVerification()
+                //checkMailVerification() // Bu satırı silin veya yorum satırı yapın
+                binding.progressBar.visibility = View.INVISIBLE
+
+                val intent = Intent(activity, NoteActivity::class.java)
+                startActivity(intent)
+
+                activity?.finish()
             } else {
                 Toast.makeText(requireContext(), R.string.fragment_sign_in_noSuchAccount, Toast.LENGTH_LONG).show()
                 binding.progressBar.visibility = View.INVISIBLE
             }
         }
     }
-    private fun checkMailVerification() {
+    // Bu fonksiyonu silin veya yorum satırı yapın
+    /*private fun checkMailVerification() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser!!.isEmailVerified) {
             binding.progressBar.visibility = View.INVISIBLE
@@ -91,7 +98,7 @@ class SignInFragment : Fragment() {
             binding.progressBar.visibility = View.INVISIBLE
             firebaseAuth.signOut()
         }
-    }
+    }*/
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

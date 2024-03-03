@@ -80,7 +80,7 @@
             </com.yahiaangelo.markdownedittext.MarkdownStylesBar>
 
             <ImageView
-                android:id="@+id/save_note"
+                android:id="@+id/saveNote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

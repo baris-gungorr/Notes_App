@@ -1,7 +1,5 @@
 package com.barisgungorr.view.fragment
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,8 +10,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -21,7 +17,6 @@ import com.barisgungorr.data.NoteModel
 import com.barisgungorr.notesapp.R
 import com.barisgungorr.notesapp.databinding.FragmentSaveBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.transition.MaterialContainerTransform
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.thebluealliance.spectrum.SpectrumPalette
@@ -37,8 +32,6 @@ class SaveFragment : Fragment() {
     private var color: Int = -1315861
     private lateinit var colorPickerDialog: BottomSheetDialog
     private val handler = Handler(Looper.getMainLooper())
-    private val bottomSheetParent = R.id.bottomSheetParent
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,10 +65,12 @@ class SaveFragment : Fragment() {
                     if (shouldNavigateBack()) {
                         saveNote()
                     } else {
-                        Navigation.findNavController(view).navigate(R.id.action_saveFragment_to_noteFragment)
+                        navController.navigate(R.id.action_saveFragment_to_noteFragment)
                     }
                 }
             })
+
+        // Bu fonksiyonu ekledim
         setUpNote()
 
         binding.etNoteContent.setStylesBar(binding.styleBar)
@@ -85,29 +80,38 @@ class SaveFragment : Fragment() {
 
     private fun shouldNavigateBack(): Boolean {
         return (binding.etNoteContent.text?.isEmpty() ?:(
-            arguments?.getString("noteId") ?: ""
-        )) == ""
+                arguments?.getString("noteId") ?: ""
+                )) == ""
     }
 
     private fun saveNote() {
         if (binding.etNoteContent.text?.isEmpty() == true) {
             Toast.makeText(activity, R.string.save_fragment_write_something, Toast.LENGTH_SHORT).show()
         } else {
+            // Bu değişkeni tanımladım
+            val noteId = arguments?.getString("noteId") ?: FirebaseFirestore.getInstance().collection("notes")
+            .document(FirebaseAuth.getInstance().uid.toString())
+                .collection("myNotes").document().id
             data = data.copy(
-                title = binding.etTitle.text.toString(),
-                content = binding.etNoteContent.getMD(),
-                date = Date().time,
-                color = color
+                // Bu satırı değiştirdim
+                id = noteId,
+            title = binding.etTitle.text.toString(),
+            content = binding.etNoteContent.getMD(),
+            date = Date().time,
+            color = color
             )
 
             if (arguments?.getString("noteId") == null) {
                 FirebaseFirestore.getInstance().collection("notes")
                     .document(FirebaseAuth.getInstance().uid.toString())
-                    .collection("myNotes").document().set(data)
-                    .addOnSuccessListener {
-                        handler.postDelayed({
-                            navController.navigate(R.id.action_saveFragment_to_noteFragment)
-                        }, 1000)
+                    .collection("myNotes").document(noteId).set(data.toHashMap())
+                .addOnSuccessListener {
+                    handler.postDelayed({
+                        navController.navigate(R.id.action_saveFragment_to_noteFragment)
+                    }, 1000)
+                }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(activity, "Kayıt sırasında bir hata oluştu: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 updateNote()
@@ -119,20 +123,14 @@ class SaveFragment : Fragment() {
         data = data.copy(id = arguments?.getString("noteId")!!)
         FirebaseFirestore.getInstance().collection("notes")
             .document(FirebaseAuth.getInstance().uid.toString())
-            .collection("myNotes").document(data.id)
-            .set(data)
+            .collection("myNotes").document(arguments?.getString("noteId")!!)
+        .set(data)
             .addOnSuccessListener {
                 navController.navigate(R.id.action_saveFragment_to_noteFragment)
             }
     }
 
     private fun setUpNote() {
-
-        if (!isNetworkAvailable()) {
-            Toast.makeText(activity, "İnternet bağlantısı yok", Toast.LENGTH_SHORT).show()
-            return
-        }
-
         val userId = FirebaseAuth.getInstance().uid
         if (userId == null) {
             Toast.makeText(activity, "Kullanıcı kimliği doğrulanmadı", Toast.LENGTH_SHORT).show()
@@ -170,19 +168,9 @@ class SaveFragment : Fragment() {
 
     private fun updateColors(color: Int) {
         binding.noteContentFragmentParent.setBackgroundColor(color)
-        //binding.setBackgroundColor(color)
         binding.styleBar.setBackgroundColor(color)
         activity?.window?.statusBarColor = color
         activity?.window?.navigationBarColor = color
         (colorPickerDialog.findViewById<CardView>(R.id.bottomSheetParent))?.setCardBackgroundColor(color)
     }
-
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager =
-            activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
-    }
-
-
 }

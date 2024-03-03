@@ -1,6 +1,5 @@
 package com.barisgungorr.view.fragment
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -40,7 +39,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
+// Part 1
 class NoteFragment : Fragment() {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var addNoteFab: LinearLayout
@@ -119,11 +118,7 @@ class NoteFragment : Fragment() {
             startPostponedEnterTransition()
             true
         }
-
-
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -142,7 +137,6 @@ class NoteFragment : Fragment() {
                 ContextCompat.getColor(requireContext(), android.R.color.transparent)
 
             activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-
             activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             activity?.window?.statusBarColor = Color.BLACK
         }
@@ -158,29 +152,17 @@ class NoteFragment : Fragment() {
         search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 noData.visibility = View.GONE
-                setUpFirebaseAdapter()
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s?.isEmpty()!!) {
-                    setUpFirebaseAdapter()
-                }
-
-                val query = FirebaseFirestore.getInstance().collection("notes")
-                    .document(FirebaseAuth.getInstance().uid.toString())
-                    .collection("myNotes").orderBy("title").startAt(s.toString())
-                    .endAt(s.toString() + "\uF8FF")
-
-                options = FirestoreRecyclerOptions.Builder<NoteModel>()
-                    .setQuery(query, NoteModel::class.java).setLifecycleOwner(viewLifecycleOwner)
-                    .build()
-
-                firebaseAdapter.updateOptions(options)
+                // Do nothing
             }
 
             override fun afterTextChanged(s: Editable?) {
                 if (s?.isEmpty()!!) {
                     setUpFirebaseAdapter()
+                } else {
+                    setUpFirebaseAdapter(s.toString())
                 }
             }
         })
@@ -215,6 +197,15 @@ class NoteFragment : Fragment() {
                     noData.visibility = if (value.isEmpty) View.VISIBLE else View.GONE
                 }
             }
+        noteGrid.setOnClickListener {
+            isGrid = !isGrid
+            if (isGrid) {
+                layoutManager.spanCount = 2
+            } else {
+                layoutManager.spanCount = 1
+            }
+            rvNote.layoutManager = layoutManager
+        }
     }
 
     private fun swipeToGesture(rvNote: RecyclerView?) {
@@ -282,8 +273,7 @@ class NoteFragment : Fragment() {
                                                 transientBottomBar?.setAction("Geri al") {
                                                     FirebaseFirestore.getInstance().collection("notes")
                                                         .document(FirebaseAuth.getInstance().uid.toString())
-                                                        .collection("myNotes").add(deletedNote)
-                                                }
+                                                        .collection("myNotes").add(deletedNote)}
                                                 super.onShown(transientBottomBar)
                                             }
                                         }).apply {
@@ -307,7 +297,6 @@ class NoteFragment : Fragment() {
 
         touchHelper.attachToRecyclerView(rvNote)
     }
-
     override fun onStart() {
         super.onStart()
         firebaseAdapter.startListening()
@@ -318,11 +307,26 @@ class NoteFragment : Fragment() {
         firebaseAdapter.stopListening()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
+    private fun setUpFirebaseAdapter(queryText: String? = null) {
+        val query: Query = if (queryText.isNullOrEmpty()) {
+            FirebaseFirestore.getInstance().collection("notes")
+                .document(FirebaseAuth.getInstance().uid.toString())
+                .collection("myNotes").orderBy("date", Query.Direction.DESCENDING)
+        } else {
+            FirebaseFirestore.getInstance().collection("notes")
+                .document(FirebaseAuth.getInstance().uid.toString())
+                .collection("myNotes").orderBy("title").startAt(queryText).endAt(queryText + "\uF8FF")
+        }
 
-    override fun onDetach() {
-        super.onDetach()
+        options =
+            FirestoreRecyclerOptions.Builder<NoteModel>().setQuery(query, NoteModel::class.java)
+                .setLifecycleOwner(viewLifecycleOwner).build()
+
+        // Bu satırı ekledim
+        firebaseAdapter.stopListening()
+        firebaseAdapter.updateOptions(options)
     }
 }
+
+// Part 2
+
